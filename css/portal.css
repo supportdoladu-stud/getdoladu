@@ -751,7 +751,23 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
     .ws__grid{ grid-template-columns:1fr; gap:0; margin-top:34px; }
     .ws__media{ padding-top:0; }
     .ws__step{ min-height:0; opacity:1; margin-bottom:26px; }
-    .ws__media{ display:none; }
+    /* На телефоні знімки стоять під текстом свого кроку. Обгортки
+       розчиняються (display:contents), і кроки та знімки стають
+       сусідами в одній колонці; order розкладає їх по data-i:
+       крок N → його знімки → крок N+1. HTML не дублюється. */
+    .ws__steps, .ws__media, .ws__sticky{ display:contents; }
+    .ws__shot{
+        grid-area:auto; opacity:1; transform:none; pointer-events:auto;
+        margin:0 0 18px;
+    }
+    .ws__step[data-i="0"]{ order:0; }  .ws__shot[data-i="0"]{ order:1; }
+    .ws__step[data-i="1"]{ order:2; }  .ws__shot[data-i="1"]{ order:3; }
+    .ws__step[data-i="2"]{ order:4; }  .ws__shot[data-i="2"]{ order:5; }
+    .ws__step[data-i="3"]{ order:6; }  .ws__shot[data-i="3"]{ order:7; }
+    .ws__step[data-i="4"]{ order:8; }  .ws__shot[data-i="4"]{ order:9; }
+    .ws__step[data-i="5"]{ order:10; } .ws__shot[data-i="5"]{ order:11; }
+    .ws__step[data-i="6"]{ order:12; } .ws__shot[data-i="6"]{ order:13; }
+    .ws__step[data-i="7"]{ order:14; } .ws__shot[data-i="7"]{ order:15; }
 }
 
 
