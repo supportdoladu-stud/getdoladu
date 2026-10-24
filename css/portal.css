@@ -969,3 +969,5 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
     margin:-14px 0 26px; font-family:var(--mono); font-size:13px;
     letter-spacing:.5px; color:var(--dim);
 }
+/* UV Editor: після пришпиленої сцени — таблиця інструментів з відступом */
+#uv-editor .swap + .fmt{ margin-top:clamp(30px,5vw,60px); }

@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/doladu_256.png">
 <link rel="apple-touch-icon" href="assets/doladu_256.png">
 
-<link rel="stylesheet" href="css/portal.css?v=20">
+<link rel="stylesheet" href="css/portal.css?v=21">
 <script>document.documentElement.className+=" js-reveal";</script>
 </head>
 <body>
@@ -559,25 +559,38 @@
     <!-- ============ UV EDITOR ============ -->
     <section class="narrow" id="uv-editor">
         <div class="container">
-            <p class="kicker kicker--pink reveal">UV Editor</p>
-            <h2 class="h-big reveal" data-delay="1" style="margin-bottom:28px">UVs, without<br>leaving the <span class="c-blue">model</span>.</h2>
-            <p class="body-txt body-txt--wide reveal" data-delay="2">
-                One press on the UV button opens a full editor inside the 3D view: the model on
-                the left, the layout on the right. Every edit is journaled, so undo and redo put
-                the islands back at once.
-            </p>
-            <figure class="shot mb-shot reveal reveal--left" data-delay="1">
-                <img src="assets/shots/uv-editor-01.jpg" width="1800" height="1380" loading="lazy" decoding="async"
-                     alt="DoLadu UV Editor Mode: the 3D model on the left and its UV layout on the right, with the selected islands highlighted in both">
-                <figcaption><b>UV Editor</b> — the model and its layout side by side; a selection lights up in both.</figcaption>
-            </figure>
-            <figure class="shot mb-shot reveal reveal--right">
-                <img src="assets/shots/uv-editor-02.jpg" width="1800" height="1381" loading="lazy" decoding="async"
-                     alt="DoLadu UV Editor Mode: the SPACE ring opened over a selected island with Flip, Cut, Stitch, Unwrap, Align, Pack, Auto, Relax, Optimize, Straighten and Orient">
-                <figcaption><b>UV Editor</b> — the SPACE ring: the everyday tools under the cursor.</figcaption>
-            </figure>
+            <!-- Два знімки міняються по черзі, як в аудиті: сцена пришпилена, під нею доріжка. -->
+            <div class="swap" data-swap style="--n:2">
+                <div class="split swap__stage">
+                    <div class="split__text">
+                        <p class="kicker kicker--pink">UV Editor</p>
+                        <h2 class="h-big">UVs, without<br>leaving the <span class="c-blue">model</span>.</h2>
+                        <p class="body-txt">
+                            One press on the UV button opens a full editor inside the 3D view: the model
+                            on the left, the layout on the right. Every edit is journaled, so undo and
+                            redo put the islands back at once.
+                        </p>
+                        <p class="body-txt">
+                            Hair locks lay out straight, root at the bottom and tip at the top. Heavy
+                            meshes (400 000 triangles) select, zoom and move islands without the wait.
+                        </p>
+                    </div>
+                    <div class="swap__media">
+                        <figure class="shot swap-shot is-active">
+                            <img src="assets/shots/uv-editor-01.jpg" width="2400" height="1840" loading="lazy" decoding="async"
+                                 alt="DoLadu UV Editor Mode: the 3D model on the left and its UV layout on the right, with the selected islands highlighted in both">
+                            <figcaption><b>UV Editor</b> — the model and its layout side by side; a selection lights up in both.</figcaption>
+                        </figure>
+                        <figure class="shot swap-shot">
+                            <img src="assets/shots/uv-editor-02.jpg" width="2400" height="1841" loading="lazy" decoding="async"
+                                 alt="DoLadu UV Editor Mode: the SPACE ring opened over a selected island with Flip, Cut, Stitch, Unwrap, Align, Pack, Auto, Relax, Optimize, Straighten and Orient">
+                            <figcaption><b>UV Editor</b> — the SPACE ring: the everyday tools under the cursor.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
 
-            <div class="fmt reveal" data-delay="2" style="margin-top:30px">
+            <div class="fmt reveal" data-delay="1">
                 <div class="fmt__row"><span class="fmt__k">Cut</span><span class="fmt__v">Cut and stitch seams on the model — edge loops, rings, shortest path, sharp edges.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Unwrap</span><span class="fmt__v">The island keeps its place, size and turn. Unwrap only the faces you picked and the rest holds.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Pin</span><span class="fmt__v">Pinned points stay put while you move, rotate, scale or unfold.</span></div>
@@ -586,10 +599,6 @@
                 <div class="fmt__row"><span class="fmt__k">Audit</span><span class="fmt__v">Flipped, stretched, overlapping and out-of-range faces in their own colours, plus distortion and texel-density heat.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Select</span><span class="fmt__v">Vertex, edge, face or island. Rectangle, lasso, paint, soft selection and a highlight before you click.</span></div>
             </div>
-            <p class="body-txt body-txt--wide reveal" data-delay="3" style="margin-top:26px">
-                Hair locks lay out straight, root at the bottom and tip at the top. Heavy meshes
-                (400 000 triangles) select, zoom and move islands without the wait.
-            </p>
         </div>
     </section>
 
