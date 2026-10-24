@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
-  "notes": "First public release.",
+  "version": "1.03",
+  "notes": "UV Editor Mode: Unwrap and Pack keep islands in place, PIN, ISOLATE, FOCUS, hover highlight, faster on big meshes. UE Readiness Check and LOD Chain Preview in UE Tools.",
   "url": "https://doladu.lemonsqueezy.com"
 }
