@@ -971,3 +971,6 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
 }
 /* UV Editor: після пришпиленої сцени — таблиця інструментів з відступом */
 #uv-editor .swap + .fmt{ margin-top:clamp(30px,5vw,60px); }
+/* Широка ліва колонка для таблиць із довгими назвами рядків */
+.fmt--wide .fmt__row{ grid-template-columns:230px 1fr; }
+@media (max-width:620px){ .fmt--wide .fmt__row{ grid-template-columns:1fr; } }

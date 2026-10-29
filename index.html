@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DoLadu — find what breaks the handoff, before the handoff</title>
-<meta name="description" content="Offline Windows QA and cleanup for 3D projects. One scan scores naming, normals, UVs, texel density, textures, pivots and scale — then fixes what it found. Nothing leaves your machine.">
+<meta name="description" content="Offline Windows QA and cleanup for 3D projects. One scan scores naming, normals, UVs, texel density, textures, pivots and scale — fixes what it can, shows you the rest. Nothing leaves your machine.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://getdoladu.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getdoladu.com/">
 <meta property="og:title" content="DoLadu — find what breaks the handoff, before the handoff">
-<meta property="og:description" content="Offline Windows QA and cleanup for 3D projects. One scan, one score, then the fixes. Nothing leaves your machine.">
+<meta property="og:description" content="Offline Windows QA and cleanup for 3D projects. One scan, one score, fixes where it can. Nothing leaves your machine.">
 <meta property="og:image" content="https://getdoladu.com/assets/og-doladu.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/doladu_256.png">
 <link rel="apple-touch-icon" href="assets/doladu_256.png">
 
-<link rel="stylesheet" href="css/portal.css?v=21">
+<link rel="stylesheet" href="css/portal.css?v=23">
 <script>document.documentElement.className+=" js-reveal";</script>
 </head>
 <body>
@@ -67,7 +67,7 @@
             </p>
             <p class="lead reveal" data-delay="2">
                 DoLadu scans the whole project in one pass and scores it out of 100 —
-                then fixes what it found. It runs on your machine, with the network cable out.
+                then fixes what it can in a click and shows you exactly where to look for the rest. It runs on your machine, with the network cable out.
             </p>
             <div class="hero__cta reveal" data-delay="3">
                 <a class="btn btn--primary" href="https://doladu.lemonsqueezy.com/checkout/buy/a9c2a3e0-8431-41ec-8bfe-f57ba2a1a37d" target="_blank" rel="noopener noreferrer">Get DoLadu <span class="btn__arrow" aria-hidden="true">↗</span></a>
@@ -94,7 +94,7 @@
                 the origin. Naming that passes your eye and fails the importer.
             </p>
             <p class="body-txt body-txt--wide reveal" data-delay="2">
-                None of them are hard to fix. All of them are hard to <strong>find</strong> —
+                Most of them are quick to fix. All of them are hard to <strong>find</strong> —
                 and you find them at the worst possible moment, in someone else's engine,
                 with your name on the file.
             </p>
@@ -126,8 +126,8 @@
                         <div class="row"><span class="k">Duplicates · scale</span><span class="v info">Clean · centimetres</span></div>
                         <div class="sec__foot">
                             <div class="row" style="padding-left:0;padding-right:0">
-                                <span class="k">Every finding names the file and offers the fix</span>
-                                <span class="v info">as a button</span>
+                                <span class="k">Every finding names the file</span>
+                                <span class="v info">fixable ones get a button</span>
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                     </p>
                     <p class="body-txt">
                         The score is the headline. The list under it is the work — every finding
-                        names the file, says what's wrong, and offers the fix as a button.
+                        names the file, says what's wrong, and where DoLadu can make the fix, offers it as a button.
                     </p>
                 </div>
             </div>
@@ -170,13 +170,13 @@
                             <img src="assets/shots/audit-02.jpg" width="1800" height="1387" loading="lazy" decoding="async"
                                  alt="DoLadu Project Audit: pivot, collision and normal problems listed by file, each with a fix button and a Fix all button per group">
                             <div class="shot__ph"><span class="ph-label">Screenshot slot</span><span class="ph-file">doladu/assets/shots/audit-02.jpg</span></div>
-                            <figcaption><b>Project Audit</b> — every finding names its file, with a fix beside it and a Fix all per group.</figcaption>
+                            <figcaption><b>Project Audit</b> — every finding names its file, with a fix beside it where one exists and a Fix all per group.</figcaption>
                         </figure>
                     </div>
 
                     <div class="split__text">
                         <p class="kicker kicker--pink">The difference</p>
-                        <h2 class="h-big">It <span class="c-pink">fixes</span> what it found.</h2>
+                        <h2 class="h-big">It <span class="c-pink">fixes</span> what it can.</h2>
                         <p class="body-txt">
                             Repack ORM. Convert rough ↔ gloss. Resize to power-of-two. Rename to the
                             UE convention. Move pivots to origin. Flip a normal map's green channel.
@@ -193,6 +193,29 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+
+    <!-- ============ FIXED OR FLAGGED ============ -->
+    <section class="narrow" id="fixed-or-flagged">
+        <div class="container">
+            <p class="kicker kicker--ok reveal">What it does about it</p>
+            <h2 class="h-big reveal" data-delay="1" style="margin-bottom:28px">Fixed, or<br>shown <span class="c-blue">exactly where</span>.</h2>
+            <p class="body-txt body-txt--wide reveal" data-delay="2">
+                Some problems have one right answer, and DoLadu makes the change for you. Others
+                need a modeller's judgement, so it doesn't pretend: it names the file and marks the
+                spot, and you fix it in Maya or Blender in a minute instead of hunting for an hour.
+            </p>
+            <div class="fmt fmt--wide reveal" data-delay="2" style="margin-top:30px">
+                <div class="fmt__row"><span class="fmt__k">Fixed with a button</span><span class="fmt__v">Names and texture suffixes against your profile or the UE one · textures that are not power-of-two · pivots off the origin and the wrong up axis · missing required folders · inverted normals and normals pointing away from their face on OBJ and binary FBX · n-gons on OBJ · a normal map's green channel, DirectX to OpenGL and back.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Shown, you fix it</span><span class="fmt__v">Polycount over budget · non-manifold edges · overlapping and crossing faces · missing frames in a sequence · n-gons inside an FBX. The 3D View lights each one on the model in its own colour, and the audit names the file.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Always safe</span><span class="fmt__v">Safe mode writes a copy and leaves your original alone. Anything changed in place is journaled, and Undo puts it back — the last twelve batches, including renames. A read-only file is refused, not overwritten.</span></div>
+            </div>
+            <p class="body-txt reveal" data-delay="3" style="margin-top:26px">
+                Pivot and axis fixes write OBJ, GLB / glTF, STL and PLY. FBX is read and checked,
+                and DoLadu says so before it asks, rather than writing a file it can't write whole.
+            </p>
         </div>
     </section>
 
@@ -495,7 +518,7 @@
                     </button>
                     <div class="acc__panel"><div class="acc__inner">
                         Files checked against a naming profile — prefixes, texture suffixes, packed maps —
-                        with auto-rename for everything that doesn't conform. Duplicate assets and
+                        with auto-rename offered for files that don't conform. Duplicate assets and
                         oversized files surfaced in the same pass, so you find the copy of a copy before
                         it ships with the rest.
                     </div></div>
@@ -676,6 +699,22 @@
                 Full-depth EXR and 16-bit textures go through OpenImageIO, so a 16-bit normal map
                 stays 16-bit.
             </p>
+        </div>
+    </section>
+
+
+    <!-- ============ WHO IT'S FOR ============ -->
+    <section class="narrow" id="who">
+        <div class="container">
+            <p class="kicker kicker--info reveal">Who it's for</p>
+            <h2 class="h-big reveal" data-delay="1" style="margin-bottom:34px">Made for whoever<br>signs the <span class="c-gold">handoff</span>.</h2>
+            <div class="fmt fmt--wide reveal" data-delay="2">
+                <div class="fmt__row"><span class="fmt__k">Character &amp; environment artists</span><span class="fmt__v">Check a delivery before the client does: naming, UVs, texel density, textures and pivots in one score, and a changelog of what moved since yesterday.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Unreal Engine artists</span><span class="fmt__v">A readiness check on the mesh itself — budgets, units and up axis, lightmap UV, collision names, pivot — plus Nanite and Lumen eligibility and a LOD chain preview that writes nothing to your files.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Technical artists &amp; leads</span><span class="fmt__v">One pipeline.json holds the studio's naming, budgets, required folders and texture maps. The app and the command-line check read the same file, so the rules carry into the build server.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Freelancers &amp; small studios</span><span class="fmt__v">Time per project is logged on its own, including which apps were open. A deadline countdown, a weekly report and a project health trend show where you stand.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Look dev &amp; VFX</span><span class="fmt__v">Colour-space and albedo checks, an ACES / OCIO inspector, frame sequences checked for gaps, EXR metadata, render passes and dailies with a burn-in.</span></div>
+            </div>
         </div>
     </section>
 
