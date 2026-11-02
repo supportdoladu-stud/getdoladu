@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/doladu_256.png">
 <link rel="apple-touch-icon" href="assets/doladu_256.png">
 
-<link rel="stylesheet" href="css/portal.css?v=23">
+<link rel="stylesheet" href="css/portal.css?v=24">
 <script>document.documentElement.className+=" js-reveal";</script>
 </head>
 <body>
@@ -98,6 +98,18 @@
                 and you find them at the worst possible moment, in someone else's engine,
                 with your name on the file.
             </p>
+        </div>
+    </section>
+
+
+    <!-- ============ THE THREE BEATS ============ -->
+    <section class="beats-wrap">
+        <div class="container">
+            <div class="beats reveal">
+                <div class="beat"><span class="beat__n">01</span><p class="beat__t">Check before you hand off.</p><p class="beat__s">One scan, one score, every file named.</p></div>
+                <div class="beat"><span class="beat__n">02</span><p class="beat__t">Fix it in one click.</p><p class="beat__s">Wherever a safe fix exists. Undo is always there.</p></div>
+                <div class="beat"><span class="beat__n">03</span><p class="beat__t">Know what's broken, and where.</p><p class="beat__s">On the model, in the layout, by file.</p></div>
+            </div>
         </div>
     </section>
 
@@ -208,7 +220,7 @@
                 spot, and you fix it in Maya or Blender in a minute instead of hunting for an hour.
             </p>
             <div class="fmt fmt--wide reveal" data-delay="2" style="margin-top:30px">
-                <div class="fmt__row"><span class="fmt__k">Fixed with a button</span><span class="fmt__v">Names and texture suffixes against your profile or the UE one · textures that are not power-of-two · pivots off the origin and the wrong up axis · missing required folders · inverted normals and normals pointing away from their face on OBJ and binary FBX · n-gons on OBJ · a normal map's green channel, DirectX to OpenGL and back.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Fixed with a button</span><span class="fmt__v">Names and texture suffixes against your profile or the UE one · textures that are not power-of-two · pivots off the origin and the wrong up axis · missing required folders · open edges, hole by hole · inverted normals and normals pointing away from their face on OBJ and binary FBX · n-gons on OBJ · a normal map's green channel, DirectX to OpenGL and back.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Shown, you fix it</span><span class="fmt__v">Polycount over budget · non-manifold edges · overlapping and crossing faces · missing frames in a sequence · n-gons inside an FBX. The 3D View lights each one on the model in its own colour, and the audit names the file.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Always safe</span><span class="fmt__v">Safe mode writes a copy and leaves your original alone. Anything changed in place is journaled, and Undo puts it back — the last twelve batches, including renames. A read-only file is refused, not overwritten.</span></div>
             </div>
@@ -216,6 +228,49 @@
                 Pivot and axis fixes write OBJ, GLB / glTF, STL and PLY. FBX is read and checked,
                 and DoLadu says so before it asks, rather than writing a file it can't write whole.
             </p>
+        </div>
+    </section>
+
+
+    <!-- ============ SEE IT ON THE MODEL ============ -->
+    <section class="narrow" id="errors">
+        <div class="container">
+            <div class="swap" data-swap style="--n:2">
+                <div class="split swap__stage">
+                    <div class="split__text">
+                        <p class="kicker kicker--pink">See it on the model</p>
+                        <h2 class="h-big">Know what's broken,<br>and <span class="c-pink">where</span>.</h2>
+                        <p class="body-txt">
+                            Every problem the scan finds can be switched on in the 3D View, each kind
+                            in its own colour, painted on the exact faces: n-gons, non-manifold edges,
+                            inverted normals, degenerate and overlapping faces, open edges. The count
+                            sits beside each one.
+                        </p>
+                        <p class="body-txt">
+                            Where a repair exists, a FIX square stands next to it. Open edges you pick
+                            hole by hole. Right-click a kind to open the file in Maya or Blender with
+                            those faces already selected.
+                        </p>
+                        <p class="body-txt">
+                            The UV Editor has its own audit — flipped, stretched, folded, too close,
+                            outside 0–1 — lit on the layout and on the model at once, with FIX ALL for
+                            what it can put right.
+                        </p>
+                    </div>
+                    <div class="swap__media">
+                        <figure class="shot swap-shot is-active">
+                            <img src="assets/shots/errors-3d-01.jpg" width="2400" height="1836" loading="lazy" decoding="async"
+                                 alt="DoLadu 3D View with the ERRORS panel open: n-gons, non-manifold edges, inverted normals, open edges and overlapping faces each with a count and a colour on the model, and FIX buttons beside the ones that can be repaired">
+                            <figcaption><b>3D View · Errors</b> — each kind in its own colour on the model, with a FIX beside the ones DoLadu can repair.</figcaption>
+                        </figure>
+                        <figure class="shot swap-shot">
+                            <img src="assets/shots/uv-errors-01.jpg" width="2400" height="1848" loading="lazy" decoding="async"
+                                 alt="DoLadu UV Editor audit: UV checks, problem faces by kind with counts, FIX ALL, distortion heat, shell borders and checker maps, with the problem faces lit on the layout and the model">
+                            <figcaption><b>UV Editor · Audit</b> — problem faces counted by kind, lit on the layout and the model, with FIX ALL.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -724,40 +779,92 @@
         <div class="container">
             <p class="kicker kicker--ok reveal">Latest update</p>
             <h2 class="h-big reveal" data-delay="1" style="margin-bottom:34px">What's new in <span class="c-gold">1.0.3</span>.</h2>
-            <p class="rel__date reveal" data-delay="1">Released 24 October 2026</p>
+            <p class="rel__date reveal" data-delay="1">Released 24 October 2026 · with the patch below</p>
             <div class="rel reveal" data-delay="2">
                 <div class="rel__col">
                     <h3 class="rel__h" style="--c:var(--pink)">UV Editor</h3>
                     <ul>
-                        <li>Unwrap and Optimize keep the island where it is — no more turning by 90° or 180°.</li>
-                        <li>Unwrap selected unfolds only the faces you picked; the island is never cut in two.</li>
-                        <li>Pack puts the selected islands into the tile they lie in.</li>
-                        <li>PIN holds UV points where they are while you move, rotate and scale.</li>
-                        <li>ISOLATE in three steps, and FOCUS (F) frames the selection in the layout and the 3D view.</li>
-                        <li>Hover highlight before you click; double-click a border edge to select the whole border.</li>
-                        <li>Audit shows eight kinds of problem faces in separate colours, with a contrast view and texel density heat.</li>
-                        <li>SPACE opens a ring of the everyday tools, and every tool has its own drawn icon.</li>
+                        <li>Audit → FIX ALL puts right flipped, stretched and folded faces, uneven density, islands on top of each other, too close and outside 0–1 in one go, and says how many problem faces there were before and after.</li>
+                        <li>Pack by mesh, by material or locally; three saved layouts; mirror; rectangle for belts, pipes and straps.</li>
+                        <li>HAIR STRAND lays every strand out as a straight upright rectangle, root at the bottom.</li>
+                        <li>Bake maps from a low and a high mesh — normal, ambient occlusion, curvature, ID and height — with a report that says why a map came out flat.</li>
+                        <li>Selecting a whole tile of a dense layout no longer freezes: 78,000 edges in about 0.2 s.</li>
+                        <li>Esc stops a running tool, and Ctrl + Z steps back through selections too.</li>
                     </ul>
                 </div>
                 <div class="rel__col">
-                    <h3 class="rel__h" style="--c:var(--info)">3D View</h3>
+                    <h3 class="rel__h" style="--c:var(--info)">3D View &amp; Inspector</h3>
                     <ul>
-                        <li>Opens faster: the model is read from the moment you press 3D VIEW. One loading screen, no flash of the previous model.</li>
-                        <li>Selected vertices are small squares drawn on top of the seams.</li>
-                        <li>Popups close only with their own buttons. Tooltips are bigger.</li>
+                        <li>Right-click an error kind to open the file in Maya or Blender with those faces selected.</li>
+                        <li>Open edges: pick the holes to close, hole by hole, on OBJ and binary FBX. The UVs stay.</li>
+                        <li>Compare two versions of a mesh, polygon by polygon, and see the changes in 3D; two textures get a difference map.</li>
+                        <li>Models are no longer shown mirrored: the view is right-handed, as in Maya and ZBrush.</li>
+                        <li>Big OBJ files open faster — 1.3 million triangles went from 30 s to 18 s.</li>
+                        <li>A file state chart beside the status list shows the checks passed, warned and failed.</li>
                     </ul>
-                    <h3 class="rel__h" style="--c:var(--ok)">Inspector</h3>
+                    <h3 class="rel__h" style="--c:var(--a-ue5)">Engine tools</h3>
                     <ul>
-                        <li>Mesh Diagnostics shows how many problems there are and where to see them, instead of long lists of numbers.</li>
-                        <li>MORE CHECKS: the count on the button, the kinds in the tooltip.</li>
-                    </ul>
-                    <h3 class="rel__h" style="--c:var(--a-ue5)">UE Tools</h3>
-                    <ul>
-                        <li>UE READINESS CHECK: the Unreal profile on a mesh — errors, budgets, units and up axis, lightmap UV, collision names, pivot.</li>
-                        <li>LOD CHAIN PREVIEW: three levels (50 / 25 / 10 %) with the measured error of each. Nothing is written to your files.</li>
+                        <li>Unity readiness check beside the Unreal one.</li>
+                        <li>UE readiness also judges the _LOD files as a chain and a UCX_ file as collision.</li>
+                        <li>UV sets card and MAKE LIGHTMAP UV, written as a new FBX beside the mesh.</li>
+                        <li>Bake prep checker finds what would spoil a bake before it runs.</li>
+                        <li>Mesh Lab: bake maps, transfer UVs, vertex colours and skin weights, and remesh.</li>
                     </ul>
                 </div>
             </div>
+
+            <details class="rel__more reveal" data-delay="2">
+                <summary><span>Show the whole 1.0.3 list</span><i aria-hidden="true"></i></summary>
+                <div class="rel rel--plain">
+                    <div class="rel__col">
+                        <h3 class="rel__h" style="--c:var(--pink)">UV Editor</h3>
+                        <ul>
+                            <li>Unwrap and Optimize keep the island where it is — no more turning by 90° or 180°.</li>
+                            <li>Unwrap selected unfolds only the faces you picked and holds the rest of the island; the island is never cut in two.</li>
+                            <li>Pack puts the selected islands into the tile they lie in. Packing without a selection fills the whole tile better.</li>
+                            <li>PIN holds UV points where they are while you move, rotate and scale; UNPIN takes them off.</li>
+                            <li>ISOLATE in three steps, and FOCUS (F) frames the selection in the layout and the 3D view.</li>
+                            <li>Hover highlight before you click; double-click a border edge to select the whole border; Shift + double-click takes the stretch between two edges.</li>
+                            <li>Audit shows eight kinds of problem faces in separate colours, with shell borders, a contrast view, distortion and texel density heat.</li>
+                            <li>SPACE opens a ring of the everyday tools, and every tool has its own drawn icon.</li>
+                            <li>Big meshes (400 000 triangles) select, zoom and move islands without the wait.</li>
+                            <li>MIRROR left–right and top–bottom; ALIGN and DISTRIBUTE in one row with equal gaps; MOVE one tile or to a UDIM number.</li>
+                            <li>Select: Shift adds, Ctrl takes away; box select is a real button; the right-click ring picks the smallest, biggest or longest islands in one press.</li>
+                            <li>TAB repeats the last action on the new selection, and SHORTCUTS lists every key.</li>
+                            <li>An X-ray view of the model in the editor, and 3D pivot axes with X Y Z letters.</li>
+                        </ul>
+                    </div>
+                    <div class="rel__col">
+                        <h3 class="rel__h" style="--c:var(--info)">3D View</h3>
+                        <ul>
+                            <li>It opens faster: the model is read from the moment you press 3D VIEW. One loading screen, no flash of the previous model.</li>
+                            <li>A face with no area is listed once, as degenerate, not also as non-manifold.</li>
+                            <li>A file with a broken coordinate no longer leaves the view empty; those points are drawn at the centre and a message says how many.</li>
+                            <li>Dense models draw their wire on the graphics card.</li>
+                            <li>Selected vertices are small squares drawn on top of the seams. Popups close only with their own buttons. Tooltips are bigger.</li>
+                        </ul>
+                        <h3 class="rel__h" style="--c:var(--ok)">Inspector</h3>
+                        <ul>
+                            <li>Mesh Diagnostics shows how many and where to see them, not long lists of numbers.</li>
+                            <li>MORE CHECKS: the count on the button, the kinds in the tooltip.</li>
+                            <li>FILE ACTIONS shows what fits the selection; a normal map gets a FLIP GREEN preview before it writes.</li>
+                        </ul>
+                        <h3 class="rel__h" style="--c:var(--a-ue5)">UE Tools</h3>
+                        <ul>
+                            <li>UE READINESS CHECK: errors, budgets, units and up axis, lightmap UV, collision names, pivot.</li>
+                            <li>LOD CHAIN PREVIEW: three levels (50 / 25 / 10 %) with the measured error of each. Nothing is written to your files.</li>
+                            <li>Mesh version compare: what the newer file moved, added or removed.</li>
+                        </ul>
+                        <h3 class="rel__h" style="--c:var(--a-project)">Project Tools</h3>
+                        <ul>
+                            <li>Cross-asset reference integrity reads the image paths inside Maya .ma scenes and relinks missing ones to the project's file of the same name.</li>
+                            <li>Shift + double-click on a folder opens every folder of the project.</li>
+                            <li>A three-page welcome card: start, how it works, what it does.</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
             <p class="body-txt reveal" data-delay="3" style="margin-top:28px">
                 Updates come through <span class="num">Menu → Check for updates</span> in the app.
             </p>
