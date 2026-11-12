@@ -321,7 +321,12 @@ h1,h2,h3{ font-family:var(--sans); font-weight:700; line-height:1.02; letter-spa
 .split--reverse .split__media{ order:2; }
 /* Два знімки по черзі: сцена (текст + знімок) пришпилена по центру екрана,
    а під нею прокручується доріжка. Висота доріжки росте з кількістю знімків. */
-.swap{ min-height:calc(40vh + 70vh * var(--n, 2)); }
+/* Сцена пришпилюється з transform:translateY(-50%), тож до пришпилення вона
+   виступає вгору на пів власної висоти й налазить на попередню секцію.
+   --swap-pad віддає їй це місце зверху: спершу пролітає попередній текст, потім
+   з'являється сцена. JS (swapUpdate) враховує цей відступ. */
+.swap{ --swap-pad:clamp(220px, 34vh, 420px); padding-top:var(--swap-pad); /* JS ставить точне значення = пів висоти сцени */
+       min-height:calc(var(--swap-pad) + 40vh + 70vh * var(--n, 2)); }
 .swap__stage{ position:sticky; top:50vh; transform:translateY(-50%); }
 .swap__media{ display:grid; }
 .swap-shot{
@@ -518,7 +523,7 @@ footer{ border-top:1px solid rgba(255,255,255,0.06); padding:34px 0 46px;
    ============================================================ */
 @media (max-width: 900px){
     .split{ grid-template-columns:1fr; gap:34px; }
-    .swap{ min-height:0; }
+    .swap{ min-height:0; padding-top:0; }
     .swap__stage{ position:static; transform:none; }
     .swap__media{ display:block; }
     .swap-shot{ opacity:1; transform:none; pointer-events:auto; margin-bottom:18px; }
@@ -841,11 +846,14 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
 /* Довгі кроки: два знімки. Текст пришпилений, поки під ним
    міняється картинка, потім їде далі разом зі сторінкою. */
 .ws__step--long{
-    min-height:calc(88vh + 82vh * (var(--n, 2) - 1)); display:block;
-    /* Без вертикальних відступів: текст пришпилюється, щойно верх кроку
+    /* --pad = пів висоти пришпиленого тексту (ставить JS): пришпилений блок
+       зміщений вгору на стільки ж, тож без цього відступу він налазив на текст
+       над ним — на вступ секції й на кінець попереднього кроку. */
+    padding-top:var(--pad, 0px);
+    min-height:calc(88vh + 82vh * (var(--n, 2) - 1) + var(--pad, 0px)); display:block;
+    /* Окрім --pad зверху: текст пришпилюється, щойно верх кроку
        дійшов до середини екрана, і тримається до самого кінця кроку —
        весь цей шлях ділять між собою знімки (див. portal.js). */
-    padding:0;
 }
 /* Текст центрується по середині екрана — туди ж, де центр знімка (його верх
    стоїть на 50vh мінус піввисоти). Раніше було 28vh від верху: на широких
@@ -1042,13 +1050,12 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
     background:rgba(6,8,14,0.94); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
 }
 .zoom.is-open{ display:block; }
-.zoom__scroll{ position:absolute; inset:0; overflow:auto; display:flex; padding:56px 20px 64px; box-sizing:border-box; }
+.zoom__scroll{ position:absolute; inset:0; overflow:auto; display:flex; padding:48px 16px 56px; box-sizing:border-box; }
 .zoom__img{
-    display:block; margin:auto; width:auto; height:auto; cursor:zoom-in;
+    display:block; margin:auto; width:auto; height:auto; cursor:zoom-out;
     max-width:100%; max-height:100%; object-fit:contain;
     border-radius:var(--r-card); box-shadow:0 24px 80px rgba(0,0,0,0.6);
 }
-.zoom.is-full .zoom__img{ max-width:none; max-height:none; cursor:zoom-out; }
 .zoom__bar{
     position:absolute; left:0; right:0; bottom:0; z-index:2; padding:14px 20px;
     display:flex; align-items:center; justify-content:space-between; gap:16px;
@@ -1064,4 +1071,4 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
 }
 .zoom__close:hover{ border-color:var(--pink); color:#fff; }
 .zoom__close:focus-visible{ outline:2px solid var(--pink); outline-offset:3px; }
-@media (max-width:700px){ .zoom__hint{ display:none; } .zoom__scroll{ padding:56px 8px 64px; } }
+@media (max-width:700px){ .zoom__hint{ display:none; } .zoom__scroll{ padding:52px 6px 56px; } }

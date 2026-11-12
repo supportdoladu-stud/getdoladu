@@ -55,6 +55,28 @@
         document.querySelectorAll('[data-count], .perf__fill').forEach(function (el) { once.observe(el); });
     }
 
+    /* ---------- 0. ВІДСТУПИ ПІД ПРИШПИЛЕНІ БЛОКИ ----------
+       Пришпилений блок (sticky + translateY(-50%)) до пришпилення виступає вгору на
+       пів власної висоти й налазить на те, що над ним. Даємо кожному доріжці
+       відступ зверху рівно в цю половину; міряємо, а не вгадуємо.        */
+    function padPins() {
+        [].forEach.call(document.querySelectorAll('.ws__step--long'), function (step) {
+            var pin = step.querySelector('.ws__pin');
+            if (pin) step.style.setProperty('--pad', Math.round(pin.offsetHeight / 2 + 6) + 'px');
+        });
+        [].forEach.call(document.querySelectorAll('.swap'), function (track) {
+            var st = track.querySelector('.swap__stage');
+            if (st) track.style.setProperty('--swap-pad', Math.round(st.offsetHeight / 2 + 6) + 'px');
+        });
+    }
+    padPins();
+    window.addEventListener('load', padPins);
+    window.addEventListener('resize', padPins);
+    if ('ResizeObserver' in window) {
+        var padRO = new ResizeObserver(padPins);
+        [].forEach.call(document.querySelectorAll('.ws__pin, .swap__stage'), function (el) { padRO.observe(el); });
+    }
+
     /* ---------- 1b. ЗАПОБІЖНИК ----------
        Спостерігач може не спрацювати: старий движок, помилка вище по коду,
        нестандартний контейнер прокрутки. Текст не має лишитись невидимим,
@@ -188,8 +210,9 @@
                    вже після того, як текст виїхав. */
                 var rs  = step.getBoundingClientRect();
                 var pin = step.querySelector('.ws__pin');
-                var travel = rs.height - (pin ? pin.offsetHeight : 0);
-                var prog = travel > 0 ? (mid - rs.top) / travel : 0;
+                var padS = parseFloat(getComputedStyle(step).paddingTop) || 0;
+                var travel = rs.height - padS - (pin ? pin.offsetHeight : 0);
+                var prog = travel > 0 ? (mid - (rs.top + padS)) / travel : 0;
                 sub = Math.max(0, Math.min(count - 1, Math.floor(prog * count)));
             }
 
@@ -238,8 +261,9 @@
             if (!stage || shots.length < 2) return;
             if (getComputedStyle(stage).position !== 'sticky') return;
             var r = track.getBoundingClientRect();
-            var travel = r.height - stage.offsetHeight;
-            var p = travel > 0 ? (window.innerHeight / 2 - r.top) / travel : 0;
+            var padTop = parseFloat(getComputedStyle(track).paddingTop) || 0;
+            var travel = r.height - padTop - stage.offsetHeight;
+            var p = travel > 0 ? (window.innerHeight / 2 - (r.top + padTop)) / travel : 0;
             var k = Math.max(0, Math.min(shots.length - 1, Math.floor(p * shots.length)));
             shots.forEach(function (el, i) { el.classList.toggle('is-active', i === k); });
         });
@@ -288,7 +312,7 @@
             '<button class="zoom__close" type="button" aria-label="Close">&times;</button>' +
             '<div class="zoom__scroll"><img class="zoom__img" alt=""></div>' +
             '<div class="zoom__bar"><span class="zoom__cap"></span>' +
-            '<span class="zoom__hint">Click to zoom &middot; Esc to close</span></div>';
+            '<span class="zoom__hint">Click or Esc to close</span></div>';
         document.body.appendChild(box);
 
         var img = box.querySelector('.zoom__img');
@@ -324,16 +348,8 @@
             var fig = t.closest && t.closest('.shot');
             if (fig && fig.querySelector('img') && t.tagName === 'IMG') open(fig);
         });
-        img.addEventListener('click', function (e) {
-            e.stopPropagation();
-            var full = box.classList.toggle('is-full');
-            if (full) {
-                // відкрити з центру знімка, а не з лівого верхнього кута
-                scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) / 2;
-                scroller.scrollTop = (scroller.scrollHeight - scroller.clientHeight) / 2;
-            }
-        });
-        scroller.addEventListener('click', function (e) { if (e.target === scroller) close(); });
+        img.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+        scroller.addEventListener('click', close);
         closeBtn.addEventListener('click', close);
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && box.classList.contains('is-open')) close();
