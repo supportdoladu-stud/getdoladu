@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/doladu_256.png">
 <link rel="apple-touch-icon" href="assets/doladu_256.png">
 
-<link rel="stylesheet" href="css/portal.css?v=24">
+<link rel="stylesheet" href="css/portal.css?v=26">
 <script>document.documentElement.className+=" js-reveal";</script>
 </head>
 <body>
@@ -220,8 +220,8 @@
                 spot, and you fix it in Maya or Blender in a minute instead of hunting for an hour.
             </p>
             <div class="fmt fmt--wide reveal" data-delay="2" style="margin-top:30px">
-                <div class="fmt__row"><span class="fmt__k">Fixed with a button</span><span class="fmt__v">Names and texture suffixes against your profile or the UE one · textures that are not power-of-two · pivots off the origin and the wrong up axis · missing required folders · open edges, hole by hole · inverted normals and normals pointing away from their face on OBJ and binary FBX · n-gons on OBJ · a normal map's green channel, DirectX to OpenGL and back.</span></div>
-                <div class="fmt__row"><span class="fmt__k">Shown, you fix it</span><span class="fmt__v">Polycount over budget · non-manifold edges · overlapping and crossing faces · missing frames in a sequence · n-gons inside an FBX. The 3D View lights each one on the model in its own colour, and the audit names the file.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Fixed with a button</span><span class="fmt__v">Names and texture suffixes against your profile or the UE one · textures that are not power-of-two · pivots off the origin and the wrong up axis · missing required folders · open edges and overlapping faces, hole by hole · degenerate faces · inverted normals and normals pointing away from their face on OBJ and binary FBX · n-gons on OBJ · a normal map's green channel, DirectX to OpenGL and back.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Shown, you fix it</span><span class="fmt__v">Polycount over budget · non-manifold edges · non-planar faces · missing frames in a sequence · n-gons inside an FBX. The 3D View lights each one on the model in its own colour, and the audit names the file.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Always safe</span><span class="fmt__v">Safe mode writes a copy and leaves your original alone. Anything changed in place is journaled, and Undo puts it back — the last twelve batches, including renames. A read-only file is refused, not overwritten.</span></div>
             </div>
             <p class="body-txt reveal" data-delay="3" style="margin-top:26px">
@@ -259,12 +259,12 @@
                     </div>
                     <div class="swap__media">
                         <figure class="shot swap-shot is-active">
-                            <img src="assets/shots/errors-3d-01.jpg" width="2400" height="1836" loading="lazy" decoding="async"
+                            <img src="assets/shots/errors-3d-01.jpg" width="2698" height="2064" loading="lazy" decoding="async"
                                  alt="DoLadu 3D View with the ERRORS panel open: n-gons, non-manifold edges, inverted normals, open edges and overlapping faces each with a count and a colour on the model, and FIX buttons beside the ones that can be repaired">
                             <figcaption><b>3D View · Errors</b> — each kind in its own colour on the model, with a FIX beside the ones DoLadu can repair.</figcaption>
                         </figure>
                         <figure class="shot swap-shot">
-                            <img src="assets/shots/uv-errors-01.jpg" width="2400" height="1848" loading="lazy" decoding="async"
+                            <img src="assets/shots/uv-errors-01.jpg" width="2689" height="2071" loading="lazy" decoding="async"
                                  alt="DoLadu UV Editor audit: UV checks, problem faces by kind with counts, FIX ALL, distortion heat, shell borders and checker maps, with the problem faces lit on the layout and the model">
                             <figcaption><b>UV Editor · Audit</b> — problem faces counted by kind, lit on the layout and the model, with FIX ALL.</figcaption>
                         </figure>
@@ -655,12 +655,12 @@
                     </div>
                     <div class="swap__media">
                         <figure class="shot swap-shot is-active">
-                            <img src="assets/shots/uv-editor-01.jpg" width="2400" height="1840" loading="lazy" decoding="async"
+                            <img src="assets/shots/uv-editor-01.jpg" width="2697" height="2068" loading="lazy" decoding="async"
                                  alt="DoLadu UV Editor Mode: the 3D model on the left and its UV layout on the right, with the selected islands highlighted in both">
                             <figcaption><b>UV Editor</b> — the model and its layout side by side; a selection lights up in both.</figcaption>
                         </figure>
                         <figure class="shot swap-shot">
-                            <img src="assets/shots/uv-editor-02.jpg" width="2400" height="1841" loading="lazy" decoding="async"
+                            <img src="assets/shots/uv-editor-02.jpg" width="2698" height="2070" loading="lazy" decoding="async"
                                  alt="DoLadu UV Editor Mode: the SPACE ring opened over a selected island with Flip, Cut, Stitch, Unwrap, Align, Pack, Auto, Relax, Optimize, Straighten and Orient">
                             <figcaption><b>UV Editor</b> — the SPACE ring: the everyday tools under the cursor.</figcaption>
                         </figure>
@@ -767,7 +767,7 @@
                 <div class="fmt__row"><span class="fmt__k">Character &amp; environment artists</span><span class="fmt__v">Check a delivery before the client does: naming, UVs, texel density, textures and pivots in one score, and a changelog of what moved since yesterday.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Unreal Engine artists</span><span class="fmt__v">A readiness check on the mesh itself — budgets, units and up axis, lightmap UV, collision names, pivot — plus Nanite and Lumen eligibility and a LOD chain preview that writes nothing to your files.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Technical artists &amp; leads</span><span class="fmt__v">One pipeline.json holds the studio's naming, budgets, required folders and texture maps. The app and the command-line check read the same file, so the rules carry into the build server.</span></div>
-                <div class="fmt__row"><span class="fmt__k">Freelancers &amp; small studios</span><span class="fmt__v">Time per project is logged on its own, including which apps were open. A deadline countdown, a weekly report and a project health trend show where you stand.</span></div>
+                <div class="fmt__row"><span class="fmt__k">Freelancers &amp; small studios</span><span class="fmt__v">Time per project is logged on its own, including which apps were open. A deadline countdown, a weekly report, a time report for a client as PDF or HTML and a project health trend show where you stand.</span></div>
                 <div class="fmt__row"><span class="fmt__k">Look dev &amp; VFX</span><span class="fmt__v">Colour-space and albedo checks, an ACES / OCIO inspector, frame sequences checked for gaps, EXR metadata, render passes and dailies with a burn-in.</span></div>
             </div>
         </div>
@@ -778,88 +778,110 @@
     <section id="whats-new">
         <div class="container">
             <p class="kicker kicker--ok reveal">Latest update</p>
-            <h2 class="h-big reveal" data-delay="1" style="margin-bottom:34px">What's new in <span class="c-gold">1.0.3</span>.</h2>
-            <p class="rel__date reveal" data-delay="1">Released 24 October 2026 · with the patch below</p>
+            <h2 class="h-big reveal" data-delay="1" style="margin-bottom:34px">What's new in <span class="c-gold">1.0.3a</span>.</h2>
+            <p class="rel__date reveal" data-delay="1">1.0.3 · 24 October 2026 &nbsp;/&nbsp; 1.0.3a · 12 November 2026</p>
             <div class="rel reveal" data-delay="2">
                 <div class="rel__col">
-                    <h3 class="rel__h" style="--c:var(--pink)">UV Editor</h3>
+                    <h3 class="rel__h" style="--c:var(--ok)">Fix what it finds</h3>
                     <ul>
-                        <li>Audit → FIX ALL puts right flipped, stretched and folded faces, uneven density, islands on top of each other, too close and outside 0–1 in one go, and says how many problem faces there were before and after.</li>
-                        <li>Pack by mesh, by material or locally; three saved layouts; mirror; rectangle for belts, pipes and straps.</li>
-                        <li>HAIR STRAND lays every strand out as a straight upright rectangle, root at the bottom.</li>
-                        <li>Bake maps from a low and a high mesh — normal, ambient occlusion, curvature, ID and height — with a report that says why a map came out flat.</li>
-                        <li>Selecting a whole tile of a dense layout no longer freezes: 78,000 edges in about 0.2 s.</li>
-                        <li>Esc stops a running tool, and Ctrl + Z steps back through selections too.</li>
+                        <li>Project Audit: FIX ALL DETECTED ISSUES at the bottom of the report runs every fix with one question, and a FIXED card keeps the date of the last one.</li>
+                        <li>Overlapping and degenerate faces now have a FIX of their own on OBJ — pick the places, press FIX, Undo is there.</li>
+                        <li>Tools fix in their own card: Geometry Health (inverted, degenerate), Normal Maps (flip green), File Size (resize to power-of-two), UV Overlap (open in the UV Editor).</li>
+                        <li>UV Editor audit → FIX ALL puts right flipped, stretched and folded faces, uneven density, islands on top of each other and outside 0–1.</li>
+                    </ul>
+                    <h3 class="rel__h" style="--c:var(--info)">Faster, and more exact</h3>
+                    <ul>
+                        <li>A model you open again loads from its saved check: 1.36 M triangles went from 13.5 s to 4.5 s, 5.7 M from 65 s to 16 s.</li>
+                        <li>Esc stops any tool that shows a progress bar, and the polycount budget counts a 65-million-triangle OBJ in pieces.</li>
+                        <li>Pivot checks agree everywhere, and UV range checks name the real UDIM tiles.</li>
                     </ul>
                 </div>
                 <div class="rel__col">
-                    <h3 class="rel__h" style="--c:var(--info)">3D View &amp; Inspector</h3>
+                    <h3 class="rel__h" style="--c:var(--pink)">UV Editor</h3>
                     <ul>
-                        <li>Right-click an error kind to open the file in Maya or Blender with those faces selected.</li>
-                        <li>Open edges: pick the holes to close, hole by hole, on OBJ and binary FBX. The UVs stay.</li>
-                        <li>Compare two versions of a mesh, polygon by polygon, and see the changes in 3D; two textures get a difference map.</li>
-                        <li>Models are no longer shown mirrored: the view is right-handed, as in Maya and ZBrush.</li>
-                        <li>Big OBJ files open faster — 1.3 million triangles went from 30 s to 18 s.</li>
-                        <li>A file state chart beside the status list shows the checks passed, warned and failed.</li>
+                        <li>Unwrap and Optimize keep the island where it is; Pack by mesh, by material or locally; three saved layouts; mirror, weld, rectangle.</li>
+                        <li>Texel density as a number: read it from a selection, or type one and scale the islands to it.</li>
+                        <li>Hair strands laid straight, root at the bottom. Material sets shown in their own colours on the layout and the model.</li>
                     </ul>
-                    <h3 class="rel__h" style="--c:var(--a-ue5)">Engine tools</h3>
+                    <h3 class="rel__h" style="--c:var(--a-ue5)">For leads and freelancers</h3>
                     <ul>
-                        <li>Unity readiness check beside the Unreal one.</li>
-                        <li>UE readiness also judges the _LOD files as a chain and a UCX_ file as collision.</li>
-                        <li>UV sets card and MAKE LIGHTMAP UV, written as a new FBX beside the mesh.</li>
-                        <li>Bake prep checker finds what would spoil a bake before it runs.</li>
-                        <li>Mesh Lab: bake maps, transfer UVs, vertex colours and skin weights, and remesh.</li>
+                        <li>Dashboard: a time report for a client as PDF or HTML, time per asset from the scene open in Maya, Blender, 3ds Max or Houdini, and a day report.</li>
+                        <li>A Macbeth ColorChecker that measures: pick the corners, get dE2000, grey ramp, exposure and a verdict, then save a corrected copy or a .cube.</li>
+                        <li>Nanite eligibility checks vegetation: alpha cards against modelled leaves.</li>
+                        <li>Cards that do one job are one card now, and search still finds the old names.</li>
                     </ul>
                 </div>
             </div>
 
             <details class="rel__more reveal" data-delay="2">
-                <summary><span>Show the whole 1.0.3 list</span><i aria-hidden="true"></i></summary>
+                <summary><span>Show the complete 1.0.3 / 1.0.3a list</span><i aria-hidden="true"></i></summary>
                 <div class="rel rel--plain">
                     <div class="rel__col">
                         <h3 class="rel__h" style="--c:var(--pink)">UV Editor</h3>
                         <ul>
-                            <li>Unwrap and Optimize keep the island where it is — no more turning by 90° or 180°.</li>
-                            <li>Unwrap selected unfolds only the faces you picked and holds the rest of the island; the island is never cut in two.</li>
-                            <li>Pack puts the selected islands into the tile they lie in. Packing without a selection fills the whole tile better.</li>
-                            <li>PIN holds UV points where they are while you move, rotate and scale; UNPIN takes them off.</li>
-                            <li>ISOLATE in three steps, and FOCUS (F) frames the selection in the layout and the 3D view.</li>
-                            <li>Hover highlight before you click; double-click a border edge to select the whole border; Shift + double-click takes the stretch between two edges.</li>
-                            <li>Audit shows eight kinds of problem faces in separate colours, with shell borders, a contrast view, distortion and texel density heat.</li>
-                            <li>SPACE opens a ring of the everyday tools, and every tool has its own drawn icon.</li>
-                            <li>Big meshes (400 000 triangles) select, zoom and move islands without the wait.</li>
-                            <li>MIRROR left–right and top–bottom; ALIGN and DISTRIBUTE in one row with equal gaps; MOVE one tile or to a UDIM number.</li>
-                            <li>Select: Shift adds, Ctrl takes away; box select is a real button; the right-click ring picks the smallest, biggest or longest islands in one press.</li>
-                            <li>TAB repeats the last action on the new selection, and SHORTCUTS lists every key.</li>
-                            <li>An X-ray view of the model in the editor, and 3D pivot axes with X Y Z letters.</li>
+                            <li>The UV button opens the editor at once: the model on the left, the layout on the right. Meshes, Material sets and UV sets are tabs of one panel.</li>
+                            <li>Unwrap and Optimize keep the island's place, size and turn. Unwrap of a selection unfolds only the picked faces and never cuts the island in two.</li>
+                            <li>Pack fills a tile better and puts the selection into the tile it lies in. Pack by mesh, by material and local pack are new. Pack local keeps the islands' exact size.</li>
+                            <li>PIN holds UV points through move, rotate, scale and unfold; UNPIN takes them off.</li>
+                            <li>ISOLATE in three steps; FOCUS (F) frames the selection in the layout and the 3D view.</li>
+                            <li>Selecting: hover highlight before you click, Shift adds, Ctrl takes away, double-click a border edge for the whole border, Shift + double-click for the stretch between two edges, a box-select button, right-click rings. Ctrl + Z undoes a selection too.</li>
+                            <li>The SPACE ring holds the everyday tools; TAB repeats the last action; SHORTCUTS lists every key.</li>
+                            <li>Rectangle, mirror, weld, stitch on the picked islands, three layout slots, align and distribute that end at the tile, transfer from LOD, UV sets (add, rename, make main, delete, lightmap), smallest / biggest / longest / mid selection.</li>
+                            <li>Texel density as a number — read it from a selection or set it. Stacked copies lie on each other exactly, and find identical islands looks only at the selection.</li>
+                            <li>Hair: locks and strands laid straight, root at the bottom, tip at the top, all one way.</li>
+                            <li>Audit: eight kinds of problem faces in separate colours, shell borders, a contrast view, texel density and distortion heat with a colour scale, UV identity on the model too, material sets in their own colours, and FIX ALL.</li>
+                            <li>Big meshes (400 000 triangles) select, zoom and move islands without the wait. Undo and redo are instant, and the UV zoom goes 100 times closer.</li>
+                            <li>The UV window shows LOADING from the moment it opens, with a thinner, softer edge.</li>
                         </ul>
                     </div>
                     <div class="rel__col">
-                        <h3 class="rel__h" style="--c:var(--info)">3D View</h3>
+                        <h3 class="rel__h" style="--c:var(--info)">3D View &amp; errors</h3>
                         <ul>
-                            <li>It opens faster: the model is read from the moment you press 3D VIEW. One loading screen, no flash of the previous model.</li>
-                            <li>A face with no area is listed once, as degenerate, not also as non-manifold.</li>
-                            <li>A file with a broken coordinate no longer leaves the view empty; those points are drawn at the centre and a message says how many.</li>
-                            <li>Dense models draw their wire on the graphics card.</li>
-                            <li>Selected vertices are small squares drawn on top of the seams. Popups close only with their own buttons. Tooltips are bigger.</li>
+                            <li>It opens faster: the model is read from the press of 3D VIEW, one loading screen, no flash of the previous model. A model you open again loads from its saved check.</li>
+                            <li>Models are no longer shown mirrored: the view is right-handed, as in Maya and ZBrush.</li>
+                            <li>Right-click N-GONS, NON-MANIFOLD, INVERTED or DEGENERATE to open the file in Maya or Blender with those faces selected.</li>
+                            <li>Fixes in ERRORS: n-gons, inverted normals, normals, degenerate faces and, hole by hole, open edges and overlapping faces. On a copy or in place, always journaled.</li>
+                            <li>A face with no area is listed once, as degenerate. A concave polygon is drawn in its own shape. A flat concave polygon no longer reads as non-planar. Open-edge and non-manifold checks agree with Maya on the test models.</li>
+                            <li>WIREFRAME draws the edges black over the model, SILHOUETTE VIEW shows only the shape, and the n-gon and vertex dots are round and sit on the surface.</li>
+                            <li>Double-click a face and the wheel zooms to that spot.</li>
+                            <li>Compare two versions of a mesh (moved, new, removed, only UVs changed) and see the changes in 3D, or compare two textures with a difference map.</li>
+                            <li>Fixed: the lightest models opened to an empty view, and a file with a broken coordinate no longer leaves it empty.</li>
                         </ul>
-                        <h3 class="rel__h" style="--c:var(--ok)">Inspector</h3>
+                        <h3 class="rel__h" style="--c:var(--ok)">Project Audit &amp; Inspector</h3>
                         <ul>
-                            <li>Mesh Diagnostics shows how many and where to see them, not long lists of numbers.</li>
-                            <li>MORE CHECKS: the count on the button, the kinds in the tooltip.</li>
-                            <li>FILE ACTIONS shows what fits the selection; a normal map gets a FLIP GREEN preview before it writes.</li>
+                            <li>FIX ALL DETECTED ISSUES runs every fix with one question; one FIX ALL for vertex normals on OBJ and FBX; INCLUDE ALL IGNORED under the ignored list.</li>
+                            <li>The mesh errors table marks a clean check with the DoLadu mark, and the report keeps the date of the last fix.</li>
+                            <li>Settings → Tools skip ignored files: every tool that walks the project can leave out what you ignored in the audit, and the report says how many were left out.</li>
+                            <li>Inspector: Mesh Diagnostics shows how many and where to see them; a FILE STATE chart once a mesh was checked; Project Assets can show a STATE column for every measured file.</li>
+                            <li>The 2D view of a normal map has FLIP GREEN and an intensity slider that leave the empty places alone.</li>
                         </ul>
-                        <h3 class="rel__h" style="--c:var(--a-ue5)">UE Tools</h3>
-                        <ul>
-                            <li>UE READINESS CHECK: errors, budgets, units and up axis, lightmap UV, collision names, pivot.</li>
-                            <li>LOD CHAIN PREVIEW: three levels (50 / 25 / 10 %) with the measured error of each. Nothing is written to your files.</li>
-                            <li>Mesh version compare: what the newer file moved, added or removed.</li>
-                        </ul>
+                    </div>
+                    <div class="rel__col">
                         <h3 class="rel__h" style="--c:var(--a-project)">Project Tools</h3>
                         <ul>
-                            <li>Cross-asset reference integrity reads the image paths inside Maya .ma scenes and relinks missing ones to the project's file of the same name.</li>
-                            <li>Shift + double-click on a folder opens every folder of the project.</li>
-                            <li>A three-page welcome card: start, how it works, what it does.</li>
+                            <li>Bake prep checker finds what would spoil a bake before it runs, finds pairs by object name inside one file, and offers ADD _hi / ADD _low.</li>
+                            <li>Polycount budget and heatmap are one card; Mesh Lab has bake maps, transfer attributes and remesh; reports copy as Markdown or text.</li>
+                            <li>Cross-asset reference integrity reads image paths inside Maya .ma scenes and relinks them.</li>
+                            <li>Cards that do one job are one card: Export Checklist, UV Layout Check, Asset Links. Every tool inside keeps its buttons and report.</li>
+                            <li>Reports: one level of cards, summary and charts first, charts readable at 11–12 px, long lists as rows, one value column, and faster loading.</li>
+                            <li>Pivot checks agree in the Export Checklist, Bake Prep, the Inspector and Project Audit.</li>
+                        </ul>
+                        <h3 class="rel__h" style="--c:var(--a-ue5)">UE Tools &amp; LookDev</h3>
+                        <ul>
+                            <li>UE readiness check judges the _LOD files as a chain and UCX_ files as collision; the Unity readiness check stands beside it.</li>
+                            <li>LOD chain preview, mesh version compare, MAKE LIGHTMAP UV and a UV sets card.</li>
+                            <li>Nanite eligibility checks vegetation. UE5 LODs, Normal Maps and Texture Streaming are one card each.</li>
+                            <li>The Macbeth ColorChecker measures against the published colours, with save corrected copy, .cube, OCIO snippet, A / B compare and albedo control. Colour space (convert, ACES / OCIO) is one card.</li>
+                        </ul>
+                        <h3 class="rel__h" style="--c:var(--warn)">Dashboard</h3>
+                        <ul>
+                            <li>A roomier right column; TODAY with a day report; time per asset; a time report for a client as PDF and HTML (billed time, rounding, rate, currency).</li>
+                            <li>A deadline picked from a calendar. After a passed deadline the days carry a soft pink glow, and a finished project turns its deadline day green. It fits a Full HD screen without a scrollbar.</li>
+                        </ul>
+                        <h3 class="rel__h" style="--c:var(--dim)">Look and feel</h3>
+                        <ul>
+                            <li>One checkbox and one slider for the whole app, smaller tooltips, a three-page welcome card, and no browser menu on a right click.</li>
+                            <li>Project Assets: the Delete entry turns red under the pointer, the columns have names over them, and SHOW DATA no longer crashes.</li>
                         </ul>
                     </div>
                 </div>
@@ -1038,6 +1060,6 @@
 </footer>
 
 <script src="js/grid.js?v=3"></script>
-<script src="js/portal.js?v=11"></script>
+<script src="js/portal.js?v=12"></script>
 </body>
 </html>

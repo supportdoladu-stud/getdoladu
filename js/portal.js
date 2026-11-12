@@ -273,4 +273,70 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     }
+
+    /* ---------- 5. ЗУМ СКРІНШОТА ----------
+       Клік по знімку відкриває його на весь екран; ще клік — у натуральному
+       розмірі, з прокруткою. Esc, ✕ або клік повз знімок — закрити.
+       Показуємо той самий файл, що й на сторінці: окремого «великого» немає. */
+    (function () {
+        var box = document.createElement('div');
+        box.className = 'zoom';
+        box.setAttribute('role', 'dialog');
+        box.setAttribute('aria-modal', 'true');
+        box.setAttribute('aria-label', 'Screenshot');
+        box.innerHTML =
+            '<button class="zoom__close" type="button" aria-label="Close">&times;</button>' +
+            '<div class="zoom__scroll"><img class="zoom__img" alt=""></div>' +
+            '<div class="zoom__bar"><span class="zoom__cap"></span>' +
+            '<span class="zoom__hint">Click to zoom &middot; Esc to close</span></div>';
+        document.body.appendChild(box);
+
+        var img = box.querySelector('.zoom__img');
+        var cap = box.querySelector('.zoom__cap');
+        var scroller = box.querySelector('.zoom__scroll');
+        var closeBtn = box.querySelector('.zoom__close');
+        var opener = null;
+
+        function open(fig) {
+            var src = fig.querySelector('img');
+            if (!src) return;
+            opener = document.activeElement;
+            img.src = src.currentSrc || src.src;
+            img.alt = src.alt || '';
+            var fc = fig.querySelector('figcaption');
+            cap.innerHTML = fc ? fc.innerHTML : '';
+            box.classList.remove('is-full');
+            box.classList.add('is-open');
+            document.documentElement.style.overflow = 'hidden';
+            scroller.scrollTop = 0; scroller.scrollLeft = 0;
+            closeBtn.focus();
+        }
+        function close() {
+            box.classList.remove('is-open', 'is-full');
+            document.documentElement.style.overflow = '';
+            img.removeAttribute('src');
+            if (opener && opener.focus) opener.focus();
+        }
+
+        document.addEventListener('click', function (e) {
+            var t = e.target;
+            if (t.closest && t.closest('.zoom')) return;
+            var fig = t.closest && t.closest('.shot');
+            if (fig && fig.querySelector('img') && t.tagName === 'IMG') open(fig);
+        });
+        img.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var full = box.classList.toggle('is-full');
+            if (full) {
+                // відкрити з центру знімка, а не з лівого верхнього кута
+                scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) / 2;
+                scroller.scrollTop = (scroller.scrollHeight - scroller.clientHeight) / 2;
+            }
+        });
+        scroller.addEventListener('click', function (e) { if (e.target === scroller) close(); });
+        closeBtn.addEventListener('click', close);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && box.classList.contains('is-open')) close();
+        });
+    })();
 })();
