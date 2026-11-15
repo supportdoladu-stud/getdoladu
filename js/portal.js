@@ -355,4 +355,39 @@
             if (e.key === 'Escape' && box.classList.contains('is-open')) close();
         });
     })();
+
+    /* ---------- 6. UPDATES: ВКЛАДКИ ВЕРСІЙ ----------
+       Кнопки 1.0.3 / 1.0.3a / 1.0.4 вгорі, під ними панель зі списком обраної.
+       Стрілки ← → перемикають; #updates-1.0.3a у посиланні відкриває потрібну. */
+    (function () {
+        var tabs = [].slice.call(document.querySelectorAll('.upd-tab'));
+        if (!tabs.length) return;
+        function show(tab, focus) {
+            tabs.forEach(function (t) {
+                var on = t === tab;
+                t.classList.toggle('is-active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+                t.setAttribute('tabindex', on ? '0' : '-1');
+                var p = document.getElementById(t.getAttribute('aria-controls'));
+                if (p) p.hidden = !on;
+            });
+            if (focus) tab.focus();
+        }
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { show(t, false); });
+            t.addEventListener('keydown', function (e) {
+                var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : -1;
+                if (n < 0 || n >= tabs.length) return;
+                e.preventDefault();
+                show(tabs[n], true);
+            });
+        });
+        var m = /^#updates-(.+)$/.exec(location.hash);
+        if (m) {
+            var want = tabs.filter(function (t) { return t.getAttribute('data-v') === decodeURIComponent(m[1]); })[0];
+            if (want) { show(want, false); var s = document.getElementById('whats-new'); if (s) s.scrollIntoView(); }
+        } else {
+            show(tabs.filter(function (t) { return t.classList.contains('is-active'); })[0] || tabs[tabs.length - 1], false);
+        }
+    })();
 })();
