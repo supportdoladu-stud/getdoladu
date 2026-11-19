@@ -1,5 +1,5 @@
 {
-  "version": "1.03",
-  "notes": "UV Editor Mode: Unwrap and Pack keep islands in place, PIN, ISOLATE, FOCUS, hover highlight, faster on big meshes. UE Readiness Check and LOD Chain Preview in UE Tools.",
-  "url": "https://doladu.lemonsqueezy.com"
+  "version": "1.04",
+  "notes": "BAKE MODE in its own window: normal, AO, curvature, color, ORM and more from a high-poly onto your low-poly. Transform: a MANUAL gizmo to move, rotate and scale by hand, SNAP onto a world grid, Undo / Redo. ERRORS: POLYCOUNT and FIX ALL VISIBLE. UV editor: UDIM tile buttons that select a tile's islands, a STRIPES checker for hair. A faster 3D View that says PAUSED while it rests, the UV / BAKE windows come back after being minimised, the collision mesh checker runs in the background, and hints wait a moment before they show. Since then: the MANUAL gizmo as ZBrush's (Alt places and turns it, Ctrl / Shift steps), a SIZE CAGE with the model's sizes, SCENE UNIT for files that state none, kept per project, an exact UV overlap check, FBX units read from the file, ERRORS and POLYCOUNT that match Maya on FBX, curtains in the UV editor and PBR MAP TEST, and no more black window during a 3D load.",
+  "url": "https://polar.sh/login"
 }
