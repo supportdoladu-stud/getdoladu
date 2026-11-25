@@ -129,14 +129,22 @@
        the modelling», вони йдуть, а з'являється Get DoLadu.               */
     var topbar = document.getElementById('topbar');
     var problem = document.getElementById('problem');
+    var totop = document.getElementById('totop');
     function topUpdate() {
         if (!topbar) return;
         topbar.classList.toggle('is-stuck', window.scrollY > 40);
+        if (totop) totop.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.9);
         if (problem) {
             var mark = problem.querySelector('.kicker') || problem;
             topbar.classList.toggle('is-cta', mark.getBoundingClientRect().top < window.innerHeight * 0.75);
         }
     }
+
+    // кнопка «вгору»: з'являється після першого екрана
+    var toTopBtn = document.getElementById('totop');
+    if (toTopBtn) toTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
 
     /* ---------- 5. ВКЛАДКИ ВОРКСПЕЙСІВ: підсвічуємо той, що на екрані ---------- */
     var wsSteps = $$('.ws__step');

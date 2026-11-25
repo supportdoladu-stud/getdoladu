@@ -1006,31 +1006,25 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
    PREMIUM · типографіка, рух від скролу, галереї
    ============================================================ */
 
-/* ---------- Типографіка: більші титули й текст ---------- */
-.h-display{ font-size:clamp(48px, min(8.4vw, 11vh), 172px); line-height:.98; letter-spacing:-0.028em; }
-@media (max-width:760px){ .h-display{ font-size:clamp(44px, 12.4vw, 80px); } }
-.h-big{ font-size:clamp(40px, 6.6vw, 118px); line-height:1.0; letter-spacing:-0.025em; }
-.h-mid{ font-size:clamp(32px, 4.1vw, 68px); line-height:1.06; letter-spacing:-0.018em; }
-.hero__sub{ font-size:clamp(21px, 2.1vw, 36px); }
-.lead{ font-size:clamp(18px, 1.5vw, 26px); }
-.body-txt{ font-size:clamp(17px, 1.3vw, 23px); line-height:1.65; max-width:56ch; }
-.narrow .body-txt--wide{ font-size:clamp(18px, 1.6vw, 28px); max-width:60ch; }
-.kicker{ font-size:clamp(10px, .75vw, 13px); }
-.shot figcaption{ font-size:clamp(13px, .9vw, 15px); }
-.note{ font-size:clamp(15px, 1.05vw, 18px); }
-.fmt__row{ grid-template-columns:180px 1fr; }
-.fmt--wide .fmt__row{ grid-template-columns:280px 1fr; }
-.fmt__k{ font-size:clamp(10px, .72vw, 12px); }
-.fmt__v{ font-size:clamp(14px, 1.05vw, 18px); }
-.rel li{ font-size:clamp(15px, 1.05vw, 18px); }
-.acc__inner{ font-size:clamp(16px, 1.15vw, 20px); }
-.plan{ padding:clamp(28px,2.6vw,46px) clamp(24px,2.4vw,42px); }
-.plan__price{ font-size:clamp(34px, 3.1vw, 62px); white-space:nowrap; }
-.plan__price span{ font-size:clamp(14px, 1vw, 17px); }
-.plan__note{ font-size:clamp(15px, 1.05vw, 18px); }
-.plan-list li{ font-size:clamp(15px, 1.1vw, 18px); }
-.perf__note{ font-size:13px; line-height:1.6; }
-@media (max-width:620px){ .fmt__row, .fmt--wide .fmt__row{ grid-template-columns:1fr; } }
+/* ---------- Типографіка: лише трохи більша за базову ----------
+   Крок ~6–8%. Сильніше збільшення пробували — виглядало завеликим. */
+.h-display{ font-size:clamp(46px, min(8.4vw, 10.7vh), 138px); }
+@media (max-width:760px){ .h-display{ font-size:clamp(42px, 11.6vw, 66px); } }
+.h-big{ font-size:clamp(36px, 5.7vw, 84px); }
+.h-mid{ font-size:clamp(27px, 3.35vw, 47px); }
+.hero__sub{ font-size:clamp(21px, 2.2vw, 32px); }
+.lead{ font-size:clamp(17px, 1.62vw, 23px); }
+.body-txt{ font-size:17px; }
+.narrow .body-txt--wide{ font-size:18px; }
+.kicker{ font-size:9.5px; }
+.note{ font-size:15px; }
+.fmt__v{ font-size:15px; }
+.rel li{ font-size:16px; }
+.acc__inner{ font-size:17px; }
+.plan__price{ font-size:clamp(28px, 2.75vw, 38px); white-space:nowrap; }
+.plan__note{ font-size:15px; }
+.plan-list li{ font-size:15px; }
+.perf__note{ font-size:12.5px; }
 
 /* ---------- Шапка: спершу лінки, потім кнопка ---------- */
 .topbar__in{ position:relative; }
@@ -1103,7 +1097,7 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
     display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
 }
 .beat{
-    position:relative; padding:clamp(28px,3.4vw,58px) clamp(22px,2.6vw,46px);
+    position:relative; padding:clamp(24px,2.4vw,36px) clamp(20px,2vw,30px);
     border-radius:var(--r-card); border:1px solid rgba(255,255,255,0.10);
     background:linear-gradient(180deg,#1a2031,#131826);
     box-shadow:14px 0 34px rgba(0,0,0,0.35);
@@ -1112,9 +1106,9 @@ html:not(.js-reveal) .acc__panel{ height:auto; }
 .beat:nth-child(1){ z-index:3; opacity:var(--q1); transform:translateX(calc((1 - var(--q1)) * -60px)); }
 .beat:nth-child(2){ z-index:2; opacity:clamp(0, calc(var(--q2) * 3), 1); transform:translateX(calc((1 - var(--q2)) * (-100% - 14px))); }
 .beat:nth-child(3){ z-index:1; opacity:clamp(0, calc(var(--q3) * 3), 1); transform:translateX(calc((1 - var(--q3)) * (-100% - 14px))); }
-.beat__n{ font-family:var(--azeret); font-weight:800; font-size:clamp(12px,.9vw,15px); letter-spacing:3px; }
-.beat__t{ font-size:clamp(26px,2.9vw,50px); line-height:1.08; letter-spacing:-0.015em; color:var(--ink); margin:18px 0 14px; font-weight:700; }
-.beat__s{ font-size:clamp(15px,1.15vw,20px); line-height:1.6; color:var(--dim); }
+.beat__n{ font-family:var(--azeret); font-weight:800; font-size:11px; letter-spacing:3px; }
+.beat__t{ font-size:clamp(20px,2.05vw,28px); line-height:1.18; color:var(--ink); margin:14px 0 10px; font-weight:700; }
+.beat__s{ font-size:15px; line-height:1.6; color:var(--dim); }
 .beat:nth-child(1) .beat__n{ color:var(--warn); }
 .beat:nth-child(2) .beat__n{ color:var(--info); }
 .beat:nth-child(3) .beat__n{ color:var(--pink); }
@@ -1217,7 +1211,7 @@ html:not(.js-reveal) .gallery .shot{ opacity:1; visibility:visible; transform:no
 }
 a.foot__copy:hover{ color:var(--info); }
 
-.ws__text .h-mid{ font-size:clamp(30px,2.9vw,56px); margin-bottom:24px; }
+.ws__text .h-mid{ font-size:clamp(27px,2.6vw,44px); margin-bottom:22px; }
 .ws__text .ws__tab{ margin-bottom:18px; }
 
 /* меню не має розпирати шапку: на вузькому екрані воно гортається всередині себе */
@@ -1230,3 +1224,20 @@ body{ overflow-x:clip; }
    clip, а не hidden — щоб sticky-вкладки лишились sticky */
 .wrap{ overflow-x:clip; }
 .gallery__view{ overflow:hidden; border-radius:var(--r-card); }
+
+/* ---------- Кнопка «вгору» ---------- */
+.totop{
+    position:fixed; z-index:60; right:clamp(14px,2vw,28px); bottom:calc(clamp(14px,2vw,28px) + env(safe-area-inset-bottom, 0px));
+    width:50px; height:50px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(163,203,245,0.45); background:rgba(20,28,46,0.85); color:var(--ink);
+    -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+    font-family:var(--mono); font-size:22px; line-height:1;
+    opacity:0; visibility:hidden; transform:translateY(14px);
+    transition:opacity .3s ease, transform .3s ease, background .25s ease, border-color .25s ease, visibility 0s .3s;
+}
+.totop.is-on{ opacity:1; visibility:visible; transform:none; transition:opacity .3s ease, transform .3s ease, background .25s ease, border-color .25s ease, visibility 0s; }
+.totop:hover{ background:rgba(88,150,226,0.55); border-color:#A3CBF5; }
+.totop:focus-visible{ outline:2px solid var(--pink); outline-offset:3px; }
+/* щоб кнопка не лягала на копірайт унизу */
+@media (max-width:900px){ footer{ padding-bottom:92px; } }
