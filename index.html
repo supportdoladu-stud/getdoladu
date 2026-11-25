@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/doladu_256.png">
 <link rel="apple-touch-icon" href="assets/doladu_256.png">
 
-<link rel="stylesheet" href="css/portal.css?v=31">
+<link rel="stylesheet" href="css/portal.css?v=37">
 <script>document.documentElement.className+=" js-reveal";</script>
 </head>
 <body>
@@ -45,6 +45,15 @@
         <a class="brand" href="./" aria-label="DoLadu">
             <img src="assets/doladu_lockup.svg" alt="DoLadu">
         </a>
+        <nav class="topnav" aria-label="Site">
+            <a href="#whats-new">Updates</a>
+            <a href="eula.html">Licence</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="refunds.html">Refunds</a>
+            <a href="legal.html">Legal</a>
+            <a href="https://buy.polar.sh/polar_cl_NhGwPVQgYIbxmg7NK5MDjSxFiaqYhhoP7xu322Sx2zt" target="_blank" rel="noopener noreferrer">Buy</a>
+            <a href="mailto:supportdoladu@gmail.com">Support</a>
+        </nav>
         <div class="topbar__right">
             <a class="btn btn--primary" href="https://buy.polar.sh/polar_cl_NhGwPVQgYIbxmg7NK5MDjSxFiaqYhhoP7xu322Sx2zt" target="_blank" rel="noopener noreferrer">Get DoLadu <span class="btn__arrow" aria-hidden="true">↗</span></a>
         </div>
@@ -84,7 +93,7 @@
 
 
     <!-- ============ 2 · ПРОБЛЕМА (без згадки продукту — свідомо) ============ -->
-    <section class="narrow">
+    <section class="narrow" id="problem">
         <div class="container">
             <p class="kicker reveal">The expensive part</p>
             <h2 class="h-big reveal" data-delay="1" style="margin-bottom:28px">The problem was never<br>the <span class="c-gold">modelling</span>.</h2>
@@ -105,7 +114,7 @@
     <!-- ============ THE THREE BEATS ============ -->
     <section class="beats-wrap">
         <div class="container">
-            <div class="beats reveal">
+            <div class="beats" data-p data-start="0.96" data-end="0.42">
                 <div class="beat"><span class="beat__n">01</span><p class="beat__t">Check before you hand off.</p><p class="beat__s">One scan, one score, every file named.</p></div>
                 <div class="beat"><span class="beat__n">02</span><p class="beat__t">Fix it in one click.</p><p class="beat__s">Wherever a safe fix exists. Undo is always there.</p></div>
                 <div class="beat"><span class="beat__n">03</span><p class="beat__t">Know what's broken, and where.</p><p class="beat__s">On the model, in the layout, by file.</p></div>
@@ -167,20 +176,17 @@
     <!-- ============ 4 · ВИПРАВЛЯЄ, А НЕ ЛИШЕ СКАРЖИТЬСЯ ============ -->
     <section>
         <div class="container">
-            <!-- Два знімки аудиту міняються по черзі: сцена пришпилена по центру,
-                 поки під нею прокручується «доріжка» (висота росте з --n). -->
-            <div class="swap" data-swap style="--n:2">
-                <div class="split swap__stage">
-                    <div class="swap__media">
-                        <figure class="shot swap-shot is-active">
-                            <img src="assets/shots/changelog-audit-02.jpg" width="2694" height="2079" loading="lazy" decoding="async" alt="DoLadu Project Audit: files with no naming prefix and pivots off the base, each with SHOW, FIX and IGNORE buttons and a FIX ALL per group">
+            <div class="split split--gallery">
+                    <div class="split__media"><div class="gallery">
+                        <figure class="shot">
+                            <img src="assets/shots/changelog-audit-02.jpg" srcset="assets/shots/changelog-audit-02-1100.webp 1100w, assets/shots/changelog-audit-02-1700.webp 1700w, assets/shots/changelog-audit-02.jpg 2694w" sizes="(max-width: 1000px) 92vw, 42vw" width="2694" height="2079" loading="lazy" decoding="async" alt="DoLadu Project Audit: files with no naming prefix and pivots off the base, each with SHOW, FIX and IGNORE buttons and a FIX ALL per group">
                             <figcaption><b>Project Audit</b> — every finding names its file, with a fix beside it where one exists and a Fix all per group.</figcaption>
                         </figure>
-                        <figure class="shot swap-shot">
-                            <img src="assets/shots/changelog-audit-03.jpg" width="2698" height="2073" loading="lazy" decoding="async" alt="DoLadu Project Audit: vertex normals and mesh errors per file, with FIX NORMALS, FIX INVERTED and a FIX ALL DETECTED ISSUES button">
+                        <figure class="shot">
+                            <img src="assets/shots/changelog-audit-03.jpg" srcset="assets/shots/changelog-audit-03-1100.webp 1100w, assets/shots/changelog-audit-03-1700.webp 1700w, assets/shots/changelog-audit-03.jpg 2698w" sizes="(max-width: 1000px) 92vw, 42vw" width="2698" height="2073" loading="lazy" decoding="async" alt="DoLadu Project Audit: vertex normals and mesh errors per file, with FIX NORMALS, FIX INVERTED and a FIX ALL DETECTED ISSUES button">
                             <figcaption><b>Project Audit</b> — vertex normals and mesh errors per file, and one button for every fix the audit found.</figcaption>
                         </figure>
-                    </div>
+                    </div></div>
 
                     <div class="split__text">
                         <p class="kicker kicker--pink">The difference</p>
@@ -200,7 +206,6 @@
                         </p>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
 
@@ -231,8 +236,7 @@
     <!-- ============ SEE IT ON THE MODEL ============ -->
     <section class="narrow" id="errors">
         <div class="container">
-            <div class="swap" data-swap style="--n:2">
-                <div class="split swap__stage">
+            <div class="split split--gallery">
                     <div class="split__text">
                         <p class="kicker kicker--pink">See it on the model</p>
                         <h2 class="h-big">Know what's broken,<br>and <span class="c-pink">where</span>.</h2>
@@ -253,18 +257,17 @@
                             what it can put right.
                         </p>
                     </div>
-                    <div class="swap__media">
-                        <figure class="shot swap-shot is-active">
-                            <img src="assets/shots/3d-view-errors-01.jpg" width="2709" height="2073" loading="lazy" decoding="async" alt="DoLadu 3D View with the ERRORS panel open: n-gons, non-manifold edges, inverted normals, open edges and overlapping faces each with a count and a colour on the model, and FIX buttons beside the ones that can be repaired">
+                    <div class="split__media"><div class="gallery">
+                        <figure class="shot">
+                            <img src="assets/shots/3d-view-errors-01.jpg" srcset="assets/shots/3d-view-errors-01-1100.webp 1100w, assets/shots/3d-view-errors-01-1700.webp 1700w, assets/shots/3d-view-errors-01.jpg 2709w" sizes="(max-width: 1000px) 92vw, 42vw" width="2709" height="2073" loading="lazy" decoding="async" alt="DoLadu 3D View with the ERRORS panel open: n-gons, non-manifold edges, inverted normals, open edges and overlapping faces each with a count and a colour on the model, and FIX buttons beside the ones that can be repaired">
                             <figcaption><b>3D View · Errors</b> — each kind in its own colour on the model, with a FIX beside the ones DoLadu can repair.</figcaption>
                         </figure>
-                        <figure class="shot swap-shot">
-                            <img src="assets/shots/3d-view-uv-01.jpg" width="2712" height="2073" loading="lazy" decoding="async" alt="DoLadu UV Editor audit: problem faces counted by kind, with FIX ALL, distortion heat and shell borders, lit on the layout and the model">
+                        <figure class="shot">
+                            <img src="assets/shots/3d-view-uv-01.jpg" srcset="assets/shots/3d-view-uv-01-1100.webp 1100w, assets/shots/3d-view-uv-01-1700.webp 1700w, assets/shots/3d-view-uv-01.jpg 2712w" sizes="(max-width: 1000px) 92vw, 42vw" width="2712" height="2073" loading="lazy" decoding="async" alt="DoLadu UV Editor audit: problem faces counted by kind, with FIX ALL, distortion heat and shell borders, lit on the layout and the model">
                             <figcaption><b>UV Editor · Audit</b> — problem faces counted by kind, lit on the layout and the model, with FIX ALL.</figcaption>
                         </figure>
-                    </div>
+                    </div></div>
                 </div>
-            </div>
         </div>
     </section>
 
@@ -316,6 +319,54 @@
     </section>
 
 
+    <!-- ============ ВЛАСНИЙ РУШІЙ ============ -->
+    <section id="engine">
+        <div class="container">
+            <div class="split">
+                <div class="split__text reveal">
+                    <p class="kicker kicker--info">Our own geometry engine</p>
+                    <h2 class="h-big">Meet <span class="c-blue">Doladu3dr</span>.</h2>
+                    <p class="body-txt">
+                        DoLadu reads, checks and rewrites meshes with an engine written for it: Python
+                        with a C core, compiled into the app. It is built for one job — finding what is
+                        wrong with a mesh quickly and exactly, so you wait less and trust the number.
+                    </p>
+                    <p class="body-txt">
+                        On 767 real OBJ files it returned the same vertices, faces, UVs, normals and
+                        parts as trimesh, a widely used open-source library, bit for bit, in one seventh
+                        of the time. Every check runs on one shared weld, so the 3D View, the Inspector
+                        and the audit agree with each other.
+                    </p>
+                </div>
+                <div class="split__media reveal reveal--right">
+                    <div class="sec">
+                        <div class="sec-title" style="--sec-accent:#A3CBF5">Reading an OBJ · 1 million quads</div>
+                        <div class="perf">
+                            <div class="perf__row">
+                                <span class="perf__label">trimesh</span>
+                                <span class="perf__track"><i class="perf__fill perf__fill--slow" data-w="100"></i></span>
+                                <span class="perf__val">4.9 s</span>
+                            </div>
+                            <div class="perf__row">
+                                <span class="perf__label">Doladu3dr</span>
+                                <span class="perf__track"><i class="perf__fill perf__fill--fast" data-w="3"></i></span>
+                                <span class="perf__val">0.12 s</span>
+                            </div>
+                        </div>
+                        <div class="sep"></div>
+                        <div class="row"><span class="k">430,000 quads</span><span class="v info">2.0 s → 0.08 s</span></div>
+                        <div class="row"><span class="k">10 million quads, read</span><span class="v info">1.4 s</span></div>
+                        <p class="perf__note">
+                            Engine benchmark, file parsing only, 4-core Linux virtual machine, trimesh 5.1.
+                            Your machine and your files will differ.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- ============ 6 · ВКЛАДКИ — ЗОБРАЖЕННЯ ПО ОДНОМУ ============
          Текст прокручується, картинка стоїть на місці й змінюється:
          попередня гасне, наступна напливає. Над усім — смуга вкладок
@@ -349,10 +400,10 @@
                 </div>
             </nav>
 
-            <div class="ws__grid">
+            <div class="ws__list">
                 <div class="ws__steps">
-                    <article class="ws__step ws__step--long" id="ws-inspector" data-i="0" style="--n:2">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-inspector" data-i="0">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#A3CBF5">Inspector</p>
                             <h3 class="h-mid">The things a viewport<br>won't show you.</h3>
                             <p class="body-txt">
@@ -363,10 +414,20 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> “it looked fine in Maya”.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/inspector-01.jpg" srcset="assets/shots/inspector-01-1100.webp 1100w, assets/shots/inspector-01-1700.webp 1700w, assets/shots/inspector-01.jpg 2685w" sizes="(max-width: 1000px) 92vw, 42vw" width="2685" height="2025" loading="lazy" decoding="async" alt="DoLadu Inspector on a mesh: polycount against budget, LOD analysis, pivot, winding, dimensions, a file state chart and the 3D View errors">
+                            <figcaption><b>Inspector</b> — budget, topology, file state and metadata for a mesh, on one screen.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/inspector-02.jpg" srcset="assets/shots/inspector-02-1100.webp 1100w, assets/shots/inspector-02-1700.webp 1700w, assets/shots/inspector-02.jpg 2682w" sizes="(max-width: 1000px) 92vw, 42vw" width="2682" height="2011" loading="lazy" decoding="async" alt="DoLadu Inspector on a texture: resolution, power-of-two check, texture health, colour statistics and colour space, with a preview">
+                            <figcaption><b>Inspector</b> — textures get the same check: size, power-of-two, colour and colour space.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
-                    <article class="ws__step ws__step--long" id="ws-project-tools" data-i="1" style="--n:3">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-project-tools" data-i="1">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#6958CC">Project Tools</p>
                             <h3 class="h-mid">The batch floor.</h3>
                             <p class="body-txt">
@@ -377,10 +438,24 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> the hour you spend renaming files by hand.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/project-tools-01.jpg" srcset="assets/shots/project-tools-01-1100.webp 1100w, assets/shots/project-tools-01-1700.webp 1700w, assets/shots/project-tools-01.jpg 2688w" sizes="(max-width: 1000px) 92vw, 42vw" width="2688" height="2023" loading="lazy" decoding="async" alt="DoLadu Project Tools: the export checklist scoring a delivery, with the folder structure validator and the naming preset generator">
+                            <figcaption><b>Project Tools</b> — a delivery checklist with a score, pass and fail per rule.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/project-tools-02.jpg" srcset="assets/shots/project-tools-02-1100.webp 1100w, assets/shots/project-tools-02-1700.webp 1700w, assets/shots/project-tools-02.jpg 2694w" sizes="(max-width: 1000px) 92vw, 42vw" width="2694" height="2013" loading="lazy" decoding="async" alt="DoLadu Project Tools: naming presets for a character, the UE, Unity and Substance Painter names it generates, and the batch rename tool">
+                            <figcaption><b>Project Tools</b> — naming presets for UE, Unity and Substance, and a batch rename with a preview.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/project-tools-03.jpg" srcset="assets/shots/project-tools-03-1100.webp 1100w, assets/shots/project-tools-03-1700.webp 1700w, assets/shots/project-tools-03.jpg 2679w" sizes="(max-width: 1000px) 92vw, 42vw" width="2679" height="2008" loading="lazy" decoding="async" alt="DoLadu Project Tools: texture sets with a per-channel matrix, the map converter, batch format converter and the pivot batch fix">
+                            <figcaption><b>Project Tools</b> — texture sets checked channel by channel, with converters and pivot fixes beside them.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
-                    <article class="ws__step ws__step--long" id="ws-ue-tools" data-i="2" style="--n:4">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-ue-tools" data-i="2">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#19D4A0">UE Tools</p>
                             <h3 class="h-mid">Checked before<br>the importer sees it.</h3>
                             <p class="body-txt">
@@ -390,10 +465,28 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> the import that silently does nothing.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/ue-01.jpg" srcset="assets/shots/ue-01-1100.webp 1100w, assets/shots/ue-01-1700.webp 1700w, assets/shots/ue-01.jpg 2706w" sizes="(max-width: 1000px) 92vw, 42vw" width="2706" height="2062" loading="lazy" decoding="async" alt="DoLadu UE Tools: material complexity estimate, normal map validity and texture compression advice">
+                            <figcaption><b>UE Tools</b> — material cost, normal map validity and texture compression, checked before import.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/ue-02.jpg" srcset="assets/shots/ue-02-1100.webp 1100w, assets/shots/ue-02-1700.webp 1700w, assets/shots/ue-02.jpg 2707w" sizes="(max-width: 1000px) 92vw, 42vw" width="2707" height="2071" loading="lazy" decoding="async" alt="DoLadu UE Tools: UE5 naming convention check with a suggested name and fix button for every file">
+                            <figcaption><b>UE Tools</b> — UE naming checked, with a suggested name and a fix beside every file.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/ue-03.jpg" srcset="assets/shots/ue-03-1100.webp 1100w, assets/shots/ue-03-1700.webp 1700w, assets/shots/ue-03.jpg 2700w" sizes="(max-width: 1000px) 92vw, 42vw" width="2700" height="2064" loading="lazy" decoding="async" alt="DoLadu UE Tools: collision mesh checker, Nanite eligibility and the UCX collision generator">
+                            <figcaption><b>UE Tools</b> — collision meshes and Nanite eligibility, with a generator for what is missing.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/ue-04.jpg" srcset="assets/shots/ue-04-1100.webp 1100w, assets/shots/ue-04-1700.webp 1700w, assets/shots/ue-04.jpg 2706w" sizes="(max-width: 1000px) 92vw, 42vw" width="2706" height="2073" loading="lazy" decoding="async" alt="DoLadu UE Tools: level streaming advisor with a memory budget, a world partition grid and the heaviest textures">
+                            <figcaption><b>UE Tools</b> — streaming memory against the budget, a world partition grid and the heaviest maps.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
-                    <article class="ws__step ws__step--long" id="ws-lookdev" data-i="3" style="--n:3">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-lookdev" data-i="3">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#D6B92E">LookDev Tools</p>
                             <h3 class="h-mid">Stop guessing<br>light values.</h3>
                             <p class="body-txt">
@@ -404,10 +497,24 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> the afternoon spent matching a plate by eye.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/lookdev-01.jpg" srcset="assets/shots/lookdev-01-1100.webp 1100w, assets/shots/lookdev-01-1700.webp 1700w, assets/shots/lookdev-01.jpg 2700w" sizes="(max-width: 1000px) 92vw, 42vw" width="2700" height="2062" loading="lazy" decoding="async" alt="DoLadu LookDev Tools: PBR material database with reference values, and the ACES / OCIO inspector">
+                            <figcaption><b>LookDev</b> — a PBR material database with reference values, and the colour space tools.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/lookdev-02.jpg" srcset="assets/shots/lookdev-02-1100.webp 1100w, assets/shots/lookdev-02-1700.webp 1700w, assets/shots/lookdev-02.jpg 2698w" sizes="(max-width: 1000px) 92vw, 42vw" width="2698" height="2065" loading="lazy" decoding="async" alt="DoLadu LookDev Tools: lighting reference values in lux and EV, and the Macbeth ColorChecker measurement">
+                            <figcaption><b>LookDev</b> — lighting reference values, and a Macbeth ColorChecker that measures.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/lookdev-03.jpg" srcset="assets/shots/lookdev-03-1100.webp 1100w, assets/shots/lookdev-03-1700.webp 1700w, assets/shots/lookdev-03.jpg 2691w" sizes="(max-width: 1000px) 92vw, 42vw" width="2691" height="2061" loading="lazy" decoding="async" alt="DoLadu LookDev Tools: depth of field result and the EV, FOV, light falloff and Fresnel calculators">
+                            <figcaption><b>LookDev</b> — depth of field, exposure, falloff and Fresnel, worked out.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
-                    <article class="ws__step ws__step--long" id="ws-vfx" data-i="4" style="--n:3">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-vfx" data-i="4">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#FF9A5A">VFX Tools</p>
                             <h3 class="h-mid">Frames, caches and passes,<br>before comp sees them.</h3>
                             <p class="body-txt">
@@ -418,10 +525,24 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> the missing frame that turns up on Friday.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/vfx-01.jpg" srcset="assets/shots/vfx-01-1100.webp 1100w, assets/shots/vfx-01-1700.webp 1700w, assets/shots/vfx-01.jpg 2695w" sizes="(max-width: 1000px) 92vw, 42vw" width="2695" height="2071" loading="lazy" decoding="async" alt="DoLadu VFX Tools: frame range calculator with handles, timecode and playblast settings">
+                            <figcaption><b>VFX Tools</b> — frame range, handles and timecode, with sequence checks beside it.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/vfx-02.jpg" srcset="assets/shots/vfx-02-1100.webp 1100w, assets/shots/vfx-02-1700.webp 1700w, assets/shots/vfx-02.jpg 2707w" sizes="(max-width: 1000px) 92vw, 42vw" width="2707" height="2073" loading="lazy" decoding="async" alt="DoLadu VFX Tools: render cost estimate with a farm timeline and optimization tips">
+                            <figcaption><b>VFX Tools</b> — render cost estimated before the job goes to the farm.</figcaption>
+                        </figure>
+                            <figure class="shot">
+                            <img src="assets/shots/vfx-03.jpg" srcset="assets/shots/vfx-03-1100.webp 1100w, assets/shots/vfx-03-1700.webp 1700w, assets/shots/vfx-03.jpg 2704w" sizes="(max-width: 1000px) 92vw, 42vw" width="2704" height="2083" loading="lazy" decoding="async" alt="DoLadu VFX Tools: a delivery check that fails a sequence against the client spec, with render watcher and shot consistency tools">
+                            <figcaption><b>VFX Tools</b> — a delivery checked against the client's spec before it goes out.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
-                    <article class="ws__step ws__step--long" id="ws-changelog-qa" data-i="5" style="--n:1">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-changelog-qa" data-i="5">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#FF5555">Changelog | QA</p>
                             <h3 class="h-mid">What changed,<br>and what's still wrong.</h3>
                             <p class="body-txt">
@@ -432,9 +553,16 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> the review where nobody knows what changed since Tuesday.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/changelog-audit-01.jpg" srcset="assets/shots/changelog-audit-01-1100.webp 1100w, assets/shots/changelog-audit-01-1700.webp 1700w, assets/shots/changelog-audit-01.jpg 2697w" sizes="(max-width: 1000px) 92vw, 42vw" width="2697" height="2073" loading="lazy" decoding="async" alt="DoLadu Changelog | QA: a project audit score with every check listed, and the QA standards it reads">
+                            <figcaption><b>Changelog | QA</b> — the audit score with every check, and the standards it reads.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
                     <article class="ws__step" id="ws-dashboard" data-i="6">
+                        <div class="ws__text reveal">
                         <p class="ws__tab" style="--tab:#40DED3">Dashboard</p>
                         <h3 class="h-mid">Where the hours<br>actually went.</h3>
                         <p class="body-txt">
@@ -443,10 +571,17 @@
                             and the task list, kept next to the work it's about.
                         </p>
                         <p class="ws__solves"><span>Solves</span> the timesheet rebuilt from memory on Friday.</p>
+                        </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/dashboard.jpg" srcset="assets/shots/dashboard-1100.webp 1100w, assets/shots/dashboard-1700.webp 1700w, assets/shots/dashboard.jpg 2701w" sizes="(max-width: 1000px) 92vw, 42vw" width="2701" height="2079" loading="lazy" decoding="async" alt="DoLadu Dashboard: pipeline stages, a progress ring, deadline countdown, activity by day and a task list">
+                            <figcaption><b>Dashboard</b> — time, deadline and tasks for the project.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
 
-                    <article class="ws__step ws__step--long" id="ws-project-health" data-i="7" style="--n:1">
-                        <div class="ws__pin">
+                    <article class="ws__step" id="ws-project-health" data-i="7">
+                        <div class="ws__text reveal">
                             <p class="ws__tab" style="--tab:#44CC88">Project Health</p>
                             <h3 class="h-mid">Getting better,<br>or just bigger?</h3>
                             <p class="body-txt">
@@ -456,89 +591,24 @@
                             </p>
                             <p class="ws__solves"><span>Solves</span> “are we on track?” answered with numbers.</p>
                         </div>
+                        <div class="ws__gallery" data-p data-start="1" data-end="0.55"><div class="gallery">
+                            <figure class="shot">
+                            <img src="assets/shots/project-health-01.jpg" srcset="assets/shots/project-health-01-1100.webp 1100w, assets/shots/project-health-01-1700.webp 1700w, assets/shots/project-health-01.jpg 2701w" sizes="(max-width: 1000px) 92vw, 42vw" width="2701" height="2068" loading="lazy" decoding="async" alt="DoLadu Project Health: pipeline progress, mesh health, workload, deadline forecast and metric coverage">
+                            <figcaption><b>Project Health</b> — progress, mesh health and a forecast for the deadline.</figcaption>
+                        </figure>
+                        </div></div>
                     </article>
                 </div>
 
-                <div class="ws__media">
-                    <div class="ws__sticky">
-                        <figure class="shot ws__shot is-active" data-i="0" data-sub="0">
-                            <img src="assets/shots/inspector-01.jpg" width="2685" height="2025" loading="lazy" decoding="async" alt="DoLadu Inspector on a mesh: polycount against budget, LOD analysis, pivot, winding, dimensions, a file state chart and the 3D View errors">
-                            <figcaption><b>Inspector</b> — budget, topology, file state and metadata for a mesh, on one screen.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="0" data-sub="1">
-                            <img src="assets/shots/inspector-02.jpg" width="2682" height="2011" loading="lazy" decoding="async" alt="DoLadu Inspector on a texture: resolution, power-of-two check, texture health, colour statistics and colour space, with a preview">
-                            <figcaption><b>Inspector</b> — textures get the same check: size, power-of-two, colour and colour space.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="1" data-sub="0">
-                            <img src="assets/shots/project-tools-01.jpg" width="2688" height="2023" loading="lazy" decoding="async" alt="DoLadu Project Tools: the export checklist scoring a delivery, with the folder structure validator and the naming preset generator">
-                            <figcaption><b>Project Tools</b> — a delivery checklist with a score, pass and fail per rule.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="1" data-sub="1">
-                            <img src="assets/shots/project-tools-02.jpg" width="2694" height="2013" loading="lazy" decoding="async" alt="DoLadu Project Tools: naming presets for a character, the UE, Unity and Substance Painter names it generates, and the batch rename tool">
-                            <figcaption><b>Project Tools</b> — naming presets for UE, Unity and Substance, and a batch rename with a preview.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="1" data-sub="2">
-                            <img src="assets/shots/project-tools-03.jpg" width="2679" height="2008" loading="lazy" decoding="async" alt="DoLadu Project Tools: texture sets with a per-channel matrix, the map converter, batch format converter and the pivot batch fix">
-                            <figcaption><b>Project Tools</b> — texture sets checked channel by channel, with converters and pivot fixes beside them.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="2" data-sub="0">
-                            <img src="assets/shots/ue-01.jpg" width="2706" height="2062" loading="lazy" decoding="async" alt="DoLadu UE Tools: material complexity estimate, normal map validity and texture compression advice">
-                            <figcaption><b>UE Tools</b> — material cost, normal map validity and texture compression, checked before import.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="2" data-sub="1">
-                            <img src="assets/shots/ue-02.jpg" width="2707" height="2071" loading="lazy" decoding="async" alt="DoLadu UE Tools: UE5 naming convention check with a suggested name and fix button for every file">
-                            <figcaption><b>UE Tools</b> — UE naming checked, with a suggested name and a fix beside every file.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="2" data-sub="2">
-                            <img src="assets/shots/ue-03.jpg" width="2700" height="2064" loading="lazy" decoding="async" alt="DoLadu UE Tools: collision mesh checker, Nanite eligibility and the UCX collision generator">
-                            <figcaption><b>UE Tools</b> — collision meshes and Nanite eligibility, with a generator for what is missing.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="2" data-sub="3">
-                            <img src="assets/shots/ue-04.jpg" width="2706" height="2073" loading="lazy" decoding="async" alt="DoLadu UE Tools: level streaming advisor with a memory budget, a world partition grid and the heaviest textures">
-                            <figcaption><b>UE Tools</b> — streaming memory against the budget, a world partition grid and the heaviest maps.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="3" data-sub="0">
-                            <img src="assets/shots/lookdev-01.jpg" width="2700" height="2062" loading="lazy" decoding="async" alt="DoLadu LookDev Tools: PBR material database with reference values, and the ACES / OCIO inspector">
-                            <figcaption><b>LookDev</b> — a PBR material database with reference values, and the colour space tools.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="3" data-sub="1">
-                            <img src="assets/shots/lookdev-02.jpg" width="2698" height="2065" loading="lazy" decoding="async" alt="DoLadu LookDev Tools: lighting reference values in lux and EV, and the Macbeth ColorChecker measurement">
-                            <figcaption><b>LookDev</b> — lighting reference values, and a Macbeth ColorChecker that measures.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="3" data-sub="2">
-                            <img src="assets/shots/lookdev-03.jpg" width="2691" height="2061" loading="lazy" decoding="async" alt="DoLadu LookDev Tools: depth of field result and the EV, FOV, light falloff and Fresnel calculators">
-                            <figcaption><b>LookDev</b> — depth of field, exposure, falloff and Fresnel, worked out.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="4" data-sub="0">
-                            <img src="assets/shots/vfx-01.jpg" width="2695" height="2071" loading="lazy" decoding="async" alt="DoLadu VFX Tools: frame range calculator with handles, timecode and playblast settings">
-                            <figcaption><b>VFX Tools</b> — frame range, handles and timecode, with sequence checks beside it.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="4" data-sub="1">
-                            <img src="assets/shots/vfx-02.jpg" width="2707" height="2073" loading="lazy" decoding="async" alt="DoLadu VFX Tools: render cost estimate with a farm timeline and optimization tips">
-                            <figcaption><b>VFX Tools</b> — render cost estimated before the job goes to the farm.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="4" data-sub="2">
-                            <img src="assets/shots/vfx-03.jpg" width="2704" height="2083" loading="lazy" decoding="async" alt="DoLadu VFX Tools: a delivery check that fails a sequence against the client spec, with render watcher and shot consistency tools">
-                            <figcaption><b>VFX Tools</b> — a delivery checked against the client's spec before it goes out.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="5" data-sub="0">
-                            <img src="assets/shots/changelog-audit-01.jpg" width="2697" height="2073" loading="lazy" decoding="async" alt="DoLadu Changelog | QA: a project audit score with every check listed, and the QA standards it reads">
-                            <figcaption><b>Changelog | QA</b> — the audit score with every check, and the standards it reads.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="6" data-sub="0">
-                            <img src="assets/shots/dashboard.jpg" width="2701" height="2079" loading="lazy" decoding="async" alt="DoLadu Dashboard: pipeline stages, a progress ring, deadline countdown, activity by day and a task list">
-                            <figcaption><b>Dashboard</b> — time, deadline and tasks for the project.</figcaption>
-                        </figure>
-                        <figure class="shot ws__shot" data-i="7" data-sub="0">
-                            <img src="assets/shots/project-health-01.jpg" width="2701" height="2068" loading="lazy" decoding="async" alt="DoLadu Project Health: pipeline progress, mesh health, workload, deadline forecast and metric coverage">
-                            <figcaption><b>Project Health</b> — progress, mesh health and a forecast for the deadline.</figcaption>
-                        </figure>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
 
+
+    <div class="orb" data-p data-start="0.98" data-end="0.55" aria-label="Get DoLadu">
+        <a class="orb__btn" href="https://buy.polar.sh/polar_cl_NhGwPVQgYIbxmg7NK5MDjSxFiaqYhhoP7xu322Sx2zt" target="_blank" rel="noopener noreferrer"><span class="orb__label">Get DoLadu</span><span class="orb__arrow" aria-hidden="true">↗</span></a>
+    </div>
 
     <!-- ============ 7 · ЩО САМЕ ПЕРЕВІРЯЄ — ШТОРКИ З ХЕШТЕГАМИ ============ -->
     <section id="checks">
@@ -618,9 +688,7 @@
     <!-- ============ UV EDITOR ============ -->
     <section class="narrow" id="uv-editor">
         <div class="container">
-            <!-- Два знімки міняються по черзі, як в аудиті: сцена пришпилена, під нею доріжка. -->
-            <div class="swap" data-swap style="--n:2">
-                <div class="split swap__stage">
+            <div class="split split--gallery">
                     <div class="split__text">
                         <p class="kicker kicker--pink">UV Editor</p>
                         <h2 class="h-big">UVs, without<br>leaving the <span class="c-blue">model</span>.</h2>
@@ -634,18 +702,17 @@
                             meshes (400 000 triangles) select, zoom and move islands without the wait.
                         </p>
                     </div>
-                    <div class="swap__media">
-                        <figure class="shot swap-shot is-active">
-                            <img src="assets/shots/3d-view-uv-02.jpg" width="2701" height="2061" loading="lazy" decoding="async" alt="DoLadu UV Editor Mode: the unwrap tools — relax, straighten, rectangle, orient and optimize — beside the layout, with the SPACE ring open">
+                    <div class="split__media"><div class="gallery">
+                        <figure class="shot">
+                            <img src="assets/shots/3d-view-uv-02.jpg" srcset="assets/shots/3d-view-uv-02-1100.webp 1100w, assets/shots/3d-view-uv-02-1700.webp 1700w, assets/shots/3d-view-uv-02.jpg 2701w" sizes="(max-width: 1000px) 92vw, 42vw" width="2701" height="2061" loading="lazy" decoding="async" alt="DoLadu UV Editor Mode: the unwrap tools — relax, straighten, rectangle, orient and optimize — beside the layout, with the SPACE ring open">
                             <figcaption><b>UV Editor</b> — unwrap, relax, straighten, rectangle and orient, with the SPACE ring for the everyday tools.</figcaption>
                         </figure>
-                        <figure class="shot swap-shot">
-                            <img src="assets/shots/3d-view-uv-03.jpg" width="2688" height="2059" loading="lazy" decoding="async" alt="DoLadu UV Editor Mode: the audit panel with the checker maps — circles and stripes — on the model and the layout">
+                        <figure class="shot">
+                            <img src="assets/shots/3d-view-uv-03.jpg" srcset="assets/shots/3d-view-uv-03-1100.webp 1100w, assets/shots/3d-view-uv-03-1700.webp 1700w, assets/shots/3d-view-uv-03.jpg 2688w" sizes="(max-width: 1000px) 92vw, 42vw" width="2688" height="2059" loading="lazy" decoding="async" alt="DoLadu UV Editor Mode: the audit panel with the checker maps — circles and stripes — on the model and the layout">
                             <figcaption><b>UV Editor</b> — checker maps on the model and the layout, with the audit beside them.</figcaption>
                         </figure>
-                    </div>
+                    </div></div>
                 </div>
-            </div>
 
             <div class="fmt reveal" data-delay="1">
                 <div class="fmt__row"><span class="fmt__k">Cut</span><span class="fmt__v">Cut and stitch seams on the model — edge loops, rings, shortest path, sharp edges.</span></div>
@@ -679,7 +746,7 @@
                 </div>
                 <div class="split__media reveal reveal--right">
                     <figure class="shot">
-                        <img src="assets/shots/3d-view-bake-01.jpg" width="2697" height="2073" loading="lazy" decoding="async"
+                        <img src="assets/shots/3d-view-bake-01.jpg" srcset="assets/shots/3d-view-bake-01-1100.webp 1100w, assets/shots/3d-view-bake-01-1700.webp 1700w, assets/shots/3d-view-bake-01.jpg 2697w" sizes="(max-width: 1000px) 92vw, 42vw" width="2697" height="2073" loading="lazy" decoding="async"
                              alt="DoLadu Bake window: the low and high models in groups on one side, the bake settings, CHECK and BAKE on the other, and the model between them">
                         <figcaption><b>Bake</b> — models and groups on the left, settings on the right, the model between them.</figcaption>
                     </figure>
@@ -713,24 +780,22 @@
                 It's the reference wall you already keep, except it lives with the project and
                 feeds the rest of the app.
             </p>
-            <figure class="shot mb-shot reveal reveal--left" data-delay="1">
-                <img src="assets/shots/moodboard-01.jpg" width="2707" height="2058" loading="lazy" decoding="async"
+            <div class="tilt tilt--left" data-p data-start="1" data-end="0.4">
+            <figure class="shot mb-shot">
+                <img src="assets/shots/moodboard-01.jpg" srcset="assets/shots/moodboard-01-1100.webp 1100w, assets/shots/moodboard-01-1700.webp 1700w, assets/shots/moodboard-01.jpg 2707w" sizes="(max-width: 1240px) 92vw, 70vw" width="2707" height="2058" loading="lazy" decoding="async"
                      alt="DoLadu Moodboard: a character portrait with colour tags linked to regions, mood sliders and the extracted palette">
-                <div class="shot__ph"><span class="ph-label">Screenshot slot</span><span class="ph-file">doladu/assets/shots/moodboard-01.jpg</span></div>
                 <figcaption><b>Moodboard</b> — colour tags carry the hex; the palette underneath exports as .ase.</figcaption>
             </figure>
-            <figure class="shot mb-shot reveal reveal--right">
-                <img src="assets/shots/moodboard-02.jpg" width="2695" height="2062" loading="lazy" decoding="async"
-                     alt="DoLadu Moodboard: reference renders of one character with colour tags, a colour circle, a sketch stroke and a note on an infinite canvas">
-                <div class="shot__ph"><span class="ph-label">Screenshot slot</span><span class="ph-file">doladu/assets/shots/moodboard-02.jpg</span></div>
-                <figcaption><b>Moodboard</b> — references, notes, strokes and colour tags on one canvas, four boards per project.</figcaption>
-            </figure>
+            </div>
+            
 
-            <figure class="shot mb-shot reveal reveal--left">
-                <img src="assets/shots/moodboard-03.jpg" width="2694" height="2059" loading="lazy" decoding="async"
+            <div class="tilt tilt--right" data-p data-start="1" data-end="0.4">
+            <figure class="shot mb-shot">
+                <img src="assets/shots/moodboard-03.jpg" srcset="assets/shots/moodboard-03-1100.webp 1100w, assets/shots/moodboard-03-1700.webp 1700w, assets/shots/moodboard-03.jpg 2694w" sizes="(max-width: 1240px) 92vw, 70vw" width="2694" height="2059" loading="lazy" decoding="async"
                      alt="DoLadu Moodboard: a zone grouping reference renders with a note, linked on the infinite canvas">
                 <figcaption><b>Moodboard</b> — zones group references and notes, and move as one.</figcaption>
             </figure>
+            </div>
 
             <p class="note note--info reveal" data-delay="3">
                 Separately, <b class="c-blue">Atlas</b> is the manual that ships inside the app —
@@ -739,6 +804,10 @@
         </div>
     </section>
 
+
+    <div class="orb" data-p data-start="0.98" data-end="0.55" aria-label="Get DoLadu">
+        <a class="orb__btn" href="https://buy.polar.sh/polar_cl_NhGwPVQgYIbxmg7NK5MDjSxFiaqYhhoP7xu322Sx2zt" target="_blank" rel="noopener noreferrer"><span class="orb__label">Get DoLadu</span><span class="orb__arrow" aria-hidden="true">↗</span></a>
+    </div>
 
     <!-- ============ 9 · ОФЛАЙН ============ -->
     <section class="narrow">
@@ -1086,19 +1155,19 @@
             <p class="kicker reveal">Pricing</p>
             <h2 class="h-big reveal" data-delay="1" style="margin-bottom:44px">The year costs<br><span class="c-pink">six months</span>.</h2>
 
-            <div class="plans">
-                <div class="card plan reveal" data-delay="1">
+            <div class="plans" data-p data-start="0.98" data-end="0.3">
+                <div class="card plan plan--m">
                     <p class="plan__name">Monthly</p>
                     <p class="plan__price">€29.99<span>/ month</span></p>
                     <p class="plan__note">For one project. Cancel any time.</p>
                 </div>
-                <div class="card plan plan--best reveal" data-delay="2">
+                <div class="card plan plan--best plan--y">
                     <span class="plan__badge">Best value</span>
                     <p class="plan__name">Yearly</p>
                     <p class="plan__price">€179.99<span>/ year</span></p>
                     <p class="plan__note">The year costs six months — save €179.89.</p>
                 </div>
-                <div class="card plan reveal" data-delay="3">
+                <div class="card plan plan--i">
                     <p class="plan__name">Indie</p>
                     <p class="plan__price">€599.99<span>/ year</span></p>
                     <p class="plan__note">5 seats — €120 per artist, per year.</p>
@@ -1107,6 +1176,12 @@
             <p class="plans__foot reveal" data-delay="3">
                 Sold through Polar, which handles VAT and invoicing as merchant of record.
             </p>
+
+            <div class="orb" data-p data-start="0.98" data-end="0.55" aria-label="Get DoLadu">
+        <a class="orb__btn" href="https://buy.polar.sh/polar_cl_NhGwPVQgYIbxmg7NK5MDjSxFiaqYhhoP7xu322Sx2zt" target="_blank" rel="noopener noreferrer"><span class="orb__label">Get DoLadu</span><span class="orb__arrow" aria-hidden="true">↗</span></a>
+    </div>
+
+
         </div>
     </section>
 
@@ -1240,14 +1315,13 @@
             <a href="refunds.html">Refunds</a>
             <a href="legal.html">Legal</a>
             <a href="https://buy.polar.sh/polar_cl_NhGwPVQgYIbxmg7NK5MDjSxFiaqYhhoP7xu322Sx2zt" target="_blank" rel="noopener noreferrer">Buy</a>
-            <a href="https://dpysartsev.art/">Portfolio</a>
             <a href="mailto:supportdoladu@gmail.com">Support</a>
         </span>
-        <span class="foot__copy">© 2026 Dmytro Pysartsev — DoLadu</span>
+        <a class="foot__copy" href="https://dpysartsev.art/">© 2026 Dmytro Pysartsev — DoLadu</a>
     </div>
 </footer>
 
 <script src="js/grid.js?v=3"></script>
-<script src="js/portal.js?v=15"></script>
+<script src="js/portal.js?v=16"></script>
 </body>
 </html>

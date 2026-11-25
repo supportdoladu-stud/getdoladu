@@ -1,17 +1,18 @@
 /* ============================================================
    DoLadu — сторінка продукту
-   Три речі: поява при скролі, заглушки для скріншотів, дрібниці шапки.
+   Поява при скролі, рух, прив'язаний до скролу, галереї, зум, вкладки.
    Ніякої залежності від бібліотек.
    ============================================================ */
 (function () {
     'use strict';
 
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var $$ = function (sel, root) { return [].slice.call((root || document).querySelectorAll(sel)); };
 
     /* ---------- 1. ПОЯВА ПРИ СКРОЛІ ----------
        IntersectionObserver, а не обробник scroll: браузер сам вирішує,
        коли рахувати, і це не гальмує довгу сторінку.                */
-    var revealables = document.querySelectorAll('.reveal');
+    var revealables = $$('.reveal');
 
     if (reduced || !('IntersectionObserver' in window)) {
         // Без анімації: просто показуємо все одразу
@@ -52,38 +53,22 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('[data-count], .perf__fill').forEach(function (el) { once.observe(el); });
-    }
-
-    /* ---------- 0. ВІДСТУПИ ПІД ПРИШПИЛЕНІ БЛОКИ ----------
-       Пришпилений блок (sticky + translateY(-50%)) до пришпилення виступає вгору на
-       пів власної висоти й налазить на те, що над ним. Даємо кожному доріжці
-       відступ зверху рівно в цю половину; міряємо, а не вгадуємо.        */
-    function padPins() {
-        [].forEach.call(document.querySelectorAll('.ws__step--long'), function (step) {
-            var pin = step.querySelector('.ws__pin');
-            if (pin) step.style.setProperty('--pad', Math.round(pin.offsetHeight / 2 + 6) + 'px');
-        });
-        [].forEach.call(document.querySelectorAll('.swap'), function (track) {
-            var st = track.querySelector('.swap__stage');
-            if (st) track.style.setProperty('--swap-pad', Math.round(st.offsetHeight / 2 + 6) + 'px');
-        });
-    }
-    padPins();
-    window.addEventListener('load', padPins);
-    window.addEventListener('resize', padPins);
-    if ('ResizeObserver' in window) {
-        var padRO = new ResizeObserver(padPins);
-        [].forEach.call(document.querySelectorAll('.ws__pin, .swap__stage'), function (el) { padRO.observe(el); });
+        // смугу спостерігаємо по її доріжці: сама вона спершу нульової ширини
+        $$('[data-count]').forEach(function (el) { once.observe(el); });
+        var bars = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                var f = entry.target.querySelector('.perf__fill');
+                if (f) f.style.width = entry.isIntersecting ? f.getAttribute('data-w') + '%' : '0%';
+            });
+        }, { threshold: 0.5 });
+        $$('.perf__track').forEach(function (el) { bars.observe(el); });
     }
 
     /* ---------- 1b. ЗАПОБІЖНИК ----------
        Спостерігач може не спрацювати: старий движок, помилка вище по коду,
        нестандартний контейнер прокрутки. Текст не має лишитись невидимим,
-       тому дублюємо простою перевіркою на скролі — вона дешева, бо кожен
-       елемент показується один раз і більше не перевіряється.            */
-    /* Запобіжник тільки ПОКАЗУЄ і ніколи не ховає: інакше він сперечався б
-       зі спостерігачами на межі й повертав те саме тремтіння. */
+       тому дублюємо простою перевіркою на скролі. Він тільки ПОКАЗУЄ і ніколи
+       не ховає: інакше сперечався б зі спостерігачами на межі.            */
     function revealVisible() {
         var vh = window.innerHeight;
         for (var i = revealables.length - 1; i >= 0; i--) {
@@ -92,19 +77,6 @@
             var r = el.getBoundingClientRect();
             if (r.top < vh * 0.88 && r.bottom > vh * 0.10) el.classList.add('is-in');
         }
-    }
-    if (!reduced) {
-        // Тротлимо ЧАСОМ, а не requestAnimationFrame: rAF не виконується,
-        // поки вкладка не малюється, і саме тоді запобіжник найпотрібніший.
-        var lastRun = 0;
-        window.addEventListener('scroll', function () {
-            var now = Date.now();
-            if (now - lastRun < 120) return;
-            lastRun = now;
-            revealVisible();
-        }, { passive: true });
-        setTimeout(revealVisible, 2500);
-        window.addEventListener('load', revealVisible);
     }
 
     /* ---------- 2. ЛІЧИЛЬНИК ОЦІНКИ ---------- */
@@ -121,32 +93,161 @@
         requestAnimationFrame(step);
     }
     function runCounters() {
-        document.querySelectorAll('[data-count]').forEach(function (el) {
-            el.textContent = el.getAttribute('data-count');
-        });
+        $$('[data-count]').forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
     }
     function fillBars() {
-        document.querySelectorAll('.perf__fill').forEach(function (el) {
-            el.style.width = el.getAttribute('data-w') + '%';
+        $$('.perf__fill').forEach(function (el) { el.style.width = el.getAttribute('data-w') + '%'; });
+    }
+
+    /* ---------- 3. РУХ, ПРИВ'ЯЗАНИЙ ДО СКРОЛУ ----------
+       Кожен [data-p] отримує --p від 0 до 1: 0, коли його верх на висоті
+       data-start (частка екрана), 1 — на data-end. Далі все робить CSS.
+       Прокрутив назад — анімація йде назад. Без JS --p = 1, усе на місці. */
+    var movers = $$('[data-p]').map(function (el) {
+        return {
+            el: el, last: -1,
+            start: parseFloat(el.getAttribute('data-start')) || 0.98,
+            end: parseFloat(el.getAttribute('data-end')) || 0.55
+        };
+    });
+    function moveUpdate() {
+        var vh = window.innerHeight;
+        var maxScroll = document.documentElement.scrollHeight - vh;
+        movers.forEach(function (m) {
+            var top = m.el.getBoundingClientRect().top;
+            var p = (vh * m.start - top) / (vh * (m.start - m.end));
+            // біля самого низу сторінки доїхати нікуди — вважаємо, що приїхали
+            if (maxScroll - window.scrollY < 4 && top < vh) p = 1;
+            p = Math.max(0, Math.min(1, p));
+            p = Math.round((1 - Math.pow(1 - p, 2)) * 1000) / 1000;      // м'яке гальмування
+            if (p !== m.last) { m.last = p; m.el.style.setProperty('--p', p); }
         });
     }
 
-    /* ---------- 3. ЗАГЛУШКИ ДЛЯ СКРІНШОТІВ ----------
-       Поки файлу в assets/shots/ немає, показуємо рамку з іменем файлу,
-       який туди треба покласти. Розкладку й рух видно вже зараз, а коли
-       з'являться справжні скріншоти — нічого міняти не доведеться.     */
-    document.querySelectorAll('figure.shot').forEach(function (fig) {
-        var img = fig.querySelector('img');
-        if (!img) return;
-        if (img.complete && img.naturalWidth > 0) return;      // вже завантажилось
-        img.addEventListener('error', function () { fig.classList.add('is-empty'); });
-        if (img.complete && img.naturalWidth === 0) fig.classList.add('is-empty');
+    /* ---------- 4. ШАПКА ----------
+       Спершу в ній лінки з футера; коли доходимо до «The problem was never
+       the modelling», вони йдуть, а з'являється Get DoLadu.               */
+    var topbar = document.getElementById('topbar');
+    var problem = document.getElementById('problem');
+    function topUpdate() {
+        if (!topbar) return;
+        topbar.classList.toggle('is-stuck', window.scrollY > 40);
+        if (problem) {
+            var mark = problem.querySelector('.kicker') || problem;
+            topbar.classList.toggle('is-cta', mark.getBoundingClientRect().top < window.innerHeight * 0.75);
+        }
+    }
+
+    /* ---------- 5. ВКЛАДКИ ВОРКСПЕЙСІВ: підсвічуємо той, що на екрані ---------- */
+    var wsSteps = $$('.ws__step');
+    var wsTabs  = $$('.ws-tabs__tab');
+    function tabUpdate() {
+        if (!wsSteps.length) return;
+        var mid = window.innerHeight * 0.5, best = 0, bestDist = Infinity;
+        wsSteps.forEach(function (el, i) {
+            var r = el.getBoundingClientRect();
+            var d = r.top <= mid && r.bottom > mid ? 0 : Math.min(Math.abs(r.top - mid), Math.abs(r.bottom - mid));
+            if (d < bestDist) { bestDist = d; best = i; }
+        });
+        wsTabs.forEach(function (el) {
+            var on = el.getAttribute('data-i') === String(best);
+            el.classList.toggle('is-active', on);
+            if (on) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current');
+        });
+    }
+
+    var frame = 0, idle = 0;
+    function onScrollNow() { frame = 0; topUpdate(); tabUpdate(); if (!reduced) moveUpdate(); }
+    function onScroll() {
+        if (!frame) frame = requestAnimationFrame(onScrollNow);
+        // дублер на випадок, коли вкладка не малюється й rAF мовчить
+        clearTimeout(idle);
+        idle = setTimeout(function () { if (frame) { cancelAnimationFrame(frame); } onScrollNow(); if (!reduced) revealVisible(); }, 120);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', onScroll);
+    onScrollNow();
+    if (!reduced) setTimeout(revealVisible, 2500);
+
+    /* ---------- 6. ГАЛЕРЕЇ ----------
+       Кілька знімків — кнопки ‹ ›, крапки й свайп. Прокрутка сторінки їх не чіпає. */
+    function eager(img) { if (img && img.loading === 'lazy') img.loading = 'eager'; }
+
+    $$('.gallery').forEach(function (g) {
+        var shots = $$('.shot', g);
+        if (!shots.length) return;
+        var view = document.createElement('div');
+        view.className = 'gallery__view';
+        g.insertBefore(view, shots[0]);
+        shots.forEach(function (f) { view.appendChild(f); });
+        var at = 0, dots = [];
+
+        function show(n) {
+            at = (n + shots.length) % shots.length;
+            shots.forEach(function (f, i) {
+                f.classList.toggle('is-active', i === at);
+                f.classList.toggle('is-before', i < at);
+            });
+            dots.forEach(function (d, i) { d.classList.toggle('is-on', i === at); });
+            eager(shots[at].querySelector('img'));
+            eager(shots[(at + 1) % shots.length].querySelector('img'));
+        }
+
+        if (shots.length > 1) {
+            var nav = document.createElement('div');
+            nav.className = 'gallery__nav';
+            nav.innerHTML =
+                '<button class="gallery__btn" type="button" aria-label="Previous screenshot">&#8249;</button>' +
+                '<span class="gallery__dots" aria-hidden="true">' + shots.map(function () { return '<i></i>'; }).join('') + '</span>' +
+                '<button class="gallery__btn" type="button" aria-label="Next screenshot">&#8250;</button>';
+            g.appendChild(nav);
+            var btns = $$('.gallery__btn', nav);
+            dots = $$('i', nav);
+            btns[0].addEventListener('click', function () { show(at - 1); });
+            btns[1].addEventListener('click', function () { show(at + 1); });
+            g.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowLeft') show(at - 1);
+                if (e.key === 'ArrowRight') show(at + 1);
+            });
+            var x0 = null, y0 = 0, swiped = false;
+            view.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; swiped = false; }, { passive: true });
+            view.addEventListener('touchend', function (e) {
+                if (x0 === null) return;
+                var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+                x0 = null;
+                if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) { swiped = true; show(at + (dx < 0 ? 1 : -1)); }
+            }, { passive: true });
+            // свайп не має відкривати зум
+            view.addEventListener('click', function (e) { if (swiped) { e.stopPropagation(); swiped = false; } }, true);
+        }
+        shots[0].classList.add('is-active');
+        dots.forEach(function (d, i) { d.classList.toggle('is-on', i === 0); });
+
+        /* Підвантажуємо перший і наступний знімки заздалегідь — за півтора екрана */
+        if ('IntersectionObserver' in window) {
+            var near = new IntersectionObserver(function (entries) {
+                if (!entries[0].isIntersecting) return;
+                eager(shots[at].querySelector('img'));
+                if (shots[1]) eager(shots[1].querySelector('img'));
+                near.disconnect();
+            }, { rootMargin: '150% 0px 150% 0px' });
+            near.observe(g);
+        }
     });
 
-    /* ---------- 3b. ШТОРКИ З ХЕШТЕГАМИ ----------
+    /* ---------- 7. ЗАГЛУШКИ ДЛЯ СКРІНШОТІВ ---------- */
+    $$('figure.shot').forEach(function (fig) {
+        var img = fig.querySelector('img');
+        if (!img) return;
+        if (img.complete && img.naturalWidth > 0) return;
+        img.addEventListener('error', function () { fig.classList.add('is-empty'); });
+    });
+
+    /* ---------- 8. ШТОРКИ З ХЕШТЕГАМИ ----------
        Висоту рахуємо в пікселях, бо height:auto не анімується.
        Відкрита завжди одна: клік по іншій закриває попередню.      */
-    var accItems = [].slice.call(document.querySelectorAll('.acc__item'));
+    var accItems = $$('.acc__item');
 
     function setPanel(item, open) {
         var panel = item.querySelector('.acc__panel');
@@ -168,140 +269,18 @@
         });
     });
 
-    // Після зміни ширини висота тексту інша — перераховуємо відкриту
-    window.addEventListener('resize', function () {
+    // Після зміни ширини (і коли доїхали шрифти) висота тексту інша
+    function refitPanels() {
         accItems.forEach(function (item) {
             if (item.classList.contains('is-open')) setPanel(item, true);
         });
-    });
-
-    /* ---------- 3c. ВКЛАДКИ: одне зображення за раз ----------
-       Текст прокручується, картинка стоїть (sticky) і змінюється:
-       попередня гасне, наступна напливає справа.
-       Активний — крок, у який зараз потрапляє середина екрана (кроки
-       йдуть впритул, тож це однозначно й без стрибків на межах).
-       У довгому кроці два знімки: перша половина кроку — data-sub 0,
-       друга — data-sub 1. Разом із кроком перемикається вкладка
-       в смузі над секцією.                                          */
-    var wsSteps  = [].slice.call(document.querySelectorAll('.ws__step'));
-    var wsShots  = [].slice.call(document.querySelectorAll('.ws__shot'));
-    var wsTabs   = [].slice.call(document.querySelectorAll('.ws-tabs__tab'));
-
-    if (wsSteps.length && wsShots.length) {
-        var wsKey = '';
-
-        function wsUpdate() {
-            var mid = window.innerHeight * 0.5;
-            var best = -1, bestDist = Infinity, sub = 0;
-            for (var i = 0; i < wsSteps.length; i++) {
-                var r = wsSteps[i].getBoundingClientRect();
-                if (r.top <= mid && r.bottom > mid) { best = i; break; }
-                var dist = Math.min(Math.abs(r.top - mid), Math.abs(r.bottom - mid));
-                if (dist < bestDist) { bestDist = dist; best = i; }
-            }
-            var step = wsSteps[best];
-            var count = wsShots.filter(function (el) {
-                return el.getAttribute('data-i') === String(best);
-            }).length;
-            if (count > 1) {
-                /* Знімки ділять між собою лише той шлях, поки текст пришпилений:
-                   від моменту, коли верх кроку дійшов до середини екрана, і до
-                   того, як текст відпустить. Інакше останній знімок міняється
-                   вже після того, як текст виїхав. */
-                var rs  = step.getBoundingClientRect();
-                var pin = step.querySelector('.ws__pin');
-                var padS = parseFloat(getComputedStyle(step).paddingTop) || 0;
-                var travel = rs.height - padS - (pin ? pin.offsetHeight : 0);
-                var prog = travel > 0 ? (mid - (rs.top + padS)) / travel : 0;
-                sub = Math.max(0, Math.min(count - 1, Math.floor(prog * count)));
-            }
-
-            var key = best + ':' + sub;
-            if (key === wsKey) return;
-            wsKey = key;
-            wsSteps.forEach(function (el, i) { el.classList.toggle('is-active', i === best); });
-            wsShots.forEach(function (el) {
-                el.classList.toggle('is-active',
-                    el.getAttribute('data-i') === String(best) &&
-                    (el.getAttribute('data-sub') || '0') === String(sub));
-            });
-            wsTabs.forEach(function (el) {
-                var on = el.getAttribute('data-i') === String(best);
-                el.classList.toggle('is-active', on);
-                if (on) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current');
-            });
-        }
-
-        var wsPending = 0;
-        window.addEventListener('scroll', function () {
-            var now = Date.now();
-            if (now - wsPending < 90) return;
-            wsPending = now;
-            wsUpdate();
-        }, { passive: true });
-        // Останній кадр після зупинки скролу — щоб тротлінг не «проковтнув» зміну
-        var wsIdle = 0;
-        window.addEventListener('scroll', function () {
-            clearTimeout(wsIdle);
-            wsIdle = setTimeout(wsUpdate, 140);
-        }, { passive: true });
-        window.addEventListener('resize', wsUpdate);
-        wsUpdate();
     }
+    window.addEventListener('resize', refitPanels);
+    window.addEventListener('load', refitPanels);
 
-    /* ---------- 3d. ЗНІМКИ ПО ЧЕРЗІ (не вкладки) ----------
-       Сцена пришпилена по центру, доки під нею їде доріжка [data-swap];
-       знімки ділять між собою шлях, поки сцена стоїть. На вузькому екрані
-       сцена звичайна (position не sticky) — тоді показано всі підряд.   */
-    var swaps = [].slice.call(document.querySelectorAll('[data-swap]'));
-    function swapUpdate() {
-        swaps.forEach(function (track) {
-            var stage = track.querySelector('.swap__stage');
-            var shots = [].slice.call(track.querySelectorAll('.swap-shot'));
-            if (!stage || shots.length < 2) return;
-            if (getComputedStyle(stage).position !== 'sticky') return;
-            var r = track.getBoundingClientRect();
-            var padTop = parseFloat(getComputedStyle(track).paddingTop) || 0;
-            var travel = r.height - padTop - stage.offsetHeight;
-            var p = travel > 0 ? (window.innerHeight / 2 - (r.top + padTop)) / travel : 0;
-            var k = Math.max(0, Math.min(shots.length - 1, Math.floor(p * shots.length)));
-            shots.forEach(function (el, i) { el.classList.toggle('is-active', i === k); });
-        });
-    }
-    if (swaps.length) {
-        var swapLast = 0, swapIdle = 0;
-        window.addEventListener('scroll', function () {
-            var now = Date.now();
-            clearTimeout(swapIdle);
-            swapIdle = setTimeout(swapUpdate, 140);
-            if (now - swapLast < 90) return;
-            swapLast = now;
-            swapUpdate();
-        }, { passive: true });
-        window.addEventListener('resize', swapUpdate);
-        swapUpdate();
-    }
-
-    /* ---------- 4. ШАПКА: підкладка після скролу ---------- */
-    var topbar = document.getElementById('topbar');
-    if (topbar) {
-        var ticking = false;
-        function onScroll() {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(function () {
-                topbar.classList.toggle('is-stuck', window.scrollY > 40);
-                ticking = false;
-            });
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
-    }
-
-    /* ---------- 5. ЗУМ СКРІНШОТА ----------
-       Клік по знімку відкриває його на весь екран; ще клік — у натуральному
-       розмірі, з прокруткою. Esc, ✕ або клік повз знімок — закрити.
-       Показуємо той самий файл, що й на сторінці: окремого «великого» немає. */
+    /* ---------- 9. ЗУМ СКРІНШОТА ----------
+       Клік по знімку відкриває його на весь екран, одним кліком. Esc, ✕ або клік
+       будь-де — закрити. Тут завжди повний jpg із src, а не легкий webp. */
     (function () {
         var box = document.createElement('div');
         box.className = 'zoom';
@@ -325,21 +304,20 @@
             var src = fig.querySelector('img');
             if (!src) return;
             opener = document.activeElement;
-            img.src = src.currentSrc || src.src;
+            img.src = src.getAttribute('src');
             img.alt = src.alt || '';
             var fc = fig.querySelector('figcaption');
             cap.innerHTML = fc ? fc.innerHTML : '';
-            box.classList.remove('is-full');
             box.classList.add('is-open');
             document.documentElement.style.overflow = 'hidden';
             scroller.scrollTop = 0; scroller.scrollLeft = 0;
             closeBtn.focus();
         }
         function close() {
-            box.classList.remove('is-open', 'is-full');
+            box.classList.remove('is-open');
             document.documentElement.style.overflow = '';
             img.removeAttribute('src');
-            if (opener && opener.focus) opener.focus();
+            if (opener && opener.focus) opener.focus({ preventScroll: true });
         }
 
         document.addEventListener('click', function (e) {
@@ -356,11 +334,11 @@
         });
     })();
 
-    /* ---------- 6. UPDATES: ВКЛАДКИ ВЕРСІЙ ----------
+    /* ---------- 10. UPDATES: ВКЛАДКИ ВЕРСІЙ ----------
        Кнопки 1.0.3 / 1.0.3a / 1.0.4 вгорі, під ними панель зі списком обраної.
        Стрілки ← → перемикають; #updates-1.0.3a у посиланні відкриває потрібну. */
     (function () {
-        var tabs = [].slice.call(document.querySelectorAll('.upd-tab'));
+        var tabs = $$('.upd-tab');
         if (!tabs.length) return;
         function show(tab, focus) {
             tabs.forEach(function (t) {
